@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniversário de Namoro</title>
+  <!-- Importe o CSS do Material UI -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+
+</head>
+
+<body>
+  <div class="bg_heart"></div>
+  <div class="container">
+    <div class="row">
+
+      <div class="card" onclick="toggleHover(this)">
+        <div class="slick-carousel">
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-05-01_23-10-48.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-05-07_00-34-35.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-06-11_21-57-30.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-06-12_20-20-39.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-06-21_22-32-40.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-06-26_15-54-23.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-07-08_23-10-46.jpg">
+          </div>
+          <div>
+            <img class="carousel-image" alt="Foto" src="photo_2023-07-20_21-53-24.jpg">
+          </div>
+        </div>
+        <div class="content">
+          <h3>Antonio & Daniela</h3>
+          <p>No enlace de mãos, amor floresce,
+            Cumplicidade em cada verso se tece.
+            Nossos corações, juntos, eternamente aquecem.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <blockquote>
+        <p>
+          <br>
+          <span id="countdown">
+            ...contando os dias <br>
+        </p>
+        <span>Da nossa melhor decisão</span>
+      </blockquote>
+    </div>
+
+    <div class="row">
+      <h1 style="color:red">Eu te amoooooooooo</h1>
+      <br>
+    </div>
+    <div class="row">
+      <iframe width="200" height="100" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?autoplay=1"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script>
+    function toggleHover(card) {
+      card.classList.toggle('hover');
+    }
+
+    // Inicialize o carrossel com as fotos dos dois
+    $(document).ready(function () {
+      $('.slick-carousel').slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        arrows: false,
+        dots: true,
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1
+      });
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const hammer = new Hammer(card);
+        hammer.on('tap', () => {
+          toggleHover(card);
+        });
+      });
+
+      // Data do aniversário de namoro
+      const targetDate = new Date('2022-07-28').getTime();
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const timeRemaining = now - targetDate;
+
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = `${days} Dias<br> ${hours} Horas<br> ${minutes} Minutos<br> ${seconds} Segundos<br>`;
+      }
+
+      // Atualiza a contagem regressiva a cada segundo
+      setInterval(updateCountdown, 1000);
+
+      setInterval(function () {
+        var r_num = Math.floor(Math.random() * 40) + 1;
+        var r_size = Math.floor(Math.random() * 65) + 10;
+        var r_left = Math.floor(Math.random() * 100) + 1;
+        var r_bg = Math.floor(Math.random() * 25) + 100;
+        var r_time = Math.floor(Math.random() * 5) + 5;
+
+        $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:lovers " + r_time + "s ease;-moz-animation:lovers " + r_time + "s ease;-ms-animation:lovers " + r_time + "s ease;animation:lovers " + r_time + "s ease'></div>");
+
+        $('.bg_heart').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:lovers " + (r_time + 5) + "s ease;-moz-animation:lovers " + (r_time + 5) + "s ease;-ms-animation:lovers " + (r_time + 5) + "s ease;animation:lovers " + (r_time + 5) + "s ease'></div>");
+
+        $('.heart').each(function () {
+          var top = $(this).css("top").replace(/[^-\d\.]/g, '');
+          var width = $(this).css("width").replace(/[^-\d\.]/g, '');
+          if (top <= -100 || width >= 150) {
+            $(this).detach();
+          }
+        });
+      }, 500);
+    });
+
+  </script>
+</body>
+
+</html>

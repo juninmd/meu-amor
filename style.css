@@ -1,0 +1,259 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #43345d;
+}
+
+* {
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-familly: "Poppins", sans-serif;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  /* Desfoque nas imagens do carrossel */
+}
+
+.slick-carousel {
+  width: 100%;
+  /* Defina o tamanho do carrossel */
+  margin-right: 20px;
+  /* Espaçamento entre o carrossel e a mensagem */
+}
+
+.slick-carousel img {
+  border-radius: 8px;
+  /* Borda arredondada nas imagens do carrossel */
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;900&display=swap');
+
+
+/** Cloud **/
+
+.word {
+  position: absolute;
+  cursor: grab;
+  font-size: 20px;
+}
+
+.word.highlighted {
+  font-weight: bold;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  padding: 1rem;
+}
+
+/** Cloud **/
+
+/** Heart **/
+.bg_heart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+}
+
+.heart {
+  position: absolute;
+  top: -50%;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -m-transform: rotate(-45deg);
+  transform: rotate(-45deg)
+}
+
+.heart:before {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 100%;
+}
+
+.heart:after {
+  position: absolute;
+  top: 0;
+  right: -50%;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 100%;
+}
+
+@-webkit-keyframes lovers {
+  0% {
+    top: 110%
+  }
+}
+
+@-moz-keyframes lovers {
+  0% {
+    top: 110%
+  }
+}
+
+@-ms-keyframes lovers {
+  0% {
+    top: 110%
+  }
+}
+
+@keyframes lovers {
+  0% {
+    top: 110%
+  }
+}
+
+/** Heart **/
+
+.cloud {
+  -webkit-text-stroke: 1px #d6f4f4;
+  transition: all 0.5s;
+  color: white;
+  font-variation-settings: "wght" 900, "ital" 1;
+  font-size: 15rem;
+  text-align: center;
+  color: transparent;
+  font-family: "Meta", sans-serif;
+  text-shadow: 2px 2px 0px #07bccc,
+    5px 5px 0px #e601c0;
+  cursor: pointer;
+}
+
+.cloud:hover {
+  -webkit-text-stroke: 4px #d6f4f4;
+  font-variation-settings: "wght" 100, "ital" 0;
+  text-shadow: none;
+}
+
+.canvas-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.container {
+  position: relative;
+  width: 1100px;
+  flex-warp: warp;
+  padding: 30px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container .card {
+  position: relative;
+  max-width: 300px;
+  height: 415px;
+  background-color: #fff;
+  margin: 30px 10px;
+  padding: 20px 15px;
+
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.container .card:hover {
+  height: 550px;
+}
+
+.container .card.hover {
+  height: 550px;
+}
+
+.container .card .image {
+  position: relative;
+  width: 260px;
+  top: -40%;
+  left: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.container .card .image img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.container .card .content {
+  position: relative;
+  color: #111;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.container .card:hover .content {
+  margin-top: 30px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+.container .card.hover .content {
+  margin-top: 30px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+}
+
+blockquote {
+  border-left: 5px solid white;
+  padding-left: 20px;
+  margin: 1.5em 10px;
+  padding: 10px 10px;
+  padding-left: 10px;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  color: white;
+}
