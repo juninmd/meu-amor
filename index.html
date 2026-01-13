@@ -49,17 +49,17 @@
 
     <!-- Countdown Section -->
     <div class="glass-card countdown-section fade-in">
-      <h3>Contando cada segundo ao seu lado</h3>
+      <h3>Contagem regressiva para o nosso grande dia</h3>
       <div id="countdown" class="countdown-timer">
         <!-- JS will populate this -->
       </div>
-      <p class="since-date">Desde nossa melhor decisão</p>
+      <p class="since-date">29 de Novembro de 2025</p>
     </div>
 
     <!-- Music & Surprise Section -->
     <div class="actions-section fade-in">
       <div class="glass-card music-card">
-        <iframe width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=0&start=0"
+        <iframe width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=1&start=0"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -110,23 +110,27 @@
       });
 
       // Countdown
-      const targetDate = new Date('2022-07-28').getTime();
+      const targetDate = new Date('2025-11-29T00:00:00').getTime();
       function updateCountdown() {
         const now = new Date().getTime();
-        const timeRemaining = now - targetDate;
+        const timeRemaining = targetDate - now;
 
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+        if (timeRemaining < 0) {
+          document.getElementById('countdown').innerHTML = "<div class='time-box'><span class='time-val'>❤️</span><span class='time-label'>Chegou!</span></div>";
+        } else {
+          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-        const html = `
-          <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Dias</span></div>
-          <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Horas</span></div>
-          <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
-          <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Seg</span></div>
-        `;
-        document.getElementById('countdown').innerHTML = html;
+          const html = `
+            <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Dias</span></div>
+            <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Horas</span></div>
+            <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
+            <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Seg</span></div>
+          `;
+          document.getElementById('countdown').innerHTML = html;
+        }
       }
       setInterval(updateCountdown, 1000);
       updateCountdown();
