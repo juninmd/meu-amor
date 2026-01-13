@@ -47,13 +47,28 @@
       </div>
     </div>
 
-    <!-- Countdown Section -->
-    <div class="glass-card countdown-section fade-in">
-      <h3>Contagem regressiva para o nosso grande dia</h3>
-      <div id="countdown" class="countdown-timer">
-        <!-- JS will populate this -->
+    <!-- Timers Container -->
+    <div class="timers-container fade-in">
+
+      <!-- Relationship Timer -->
+      <div class="glass-card timer-card">
+        <h3>Juntos há</h3>
+        <div id="relationship-timer" class="countdown-timer">
+          <!-- JS will populate -->
+        </div>
+        <p class="since-date">Desde 28 de Julho de 2022</p>
       </div>
-      <p class="since-date">29 de Novembro de 2025</p>
+
+      <!-- Wedding Timer -->
+      <div class="glass-card timer-card">
+        <h3 id="wedding-title">Contagem regressiva</h3>
+        <div id="wedding-timer" class="countdown-timer">
+          <!-- JS will populate -->
+        </div>
+        <p id="wedding-date-display" class="since-date">29 de Novembro de 2025</p>
+        <div id="bodas-display" class="bodas-badge" style="display:none;"></div>
+      </div>
+
     </div>
 
     <!-- Music & Surprise Section -->
@@ -109,31 +124,74 @@
         speed: 500
       });
 
-      // Countdown
-      const targetDate = new Date('2025-11-29T00:00:00').getTime();
-      function updateCountdown() {
+      // --- TIMERS LOGIC ---
+      const relationshipStart = new Date('2022-07-28T00:00:00').getTime();
+      const weddingDate = new Date('2025-11-29T00:00:00').getTime();
+
+      const bodasMap = {
+        1: "Papel", 2: "Algodão", 3: "Trigo", 4: "Flores e Frutas", 5: "Madeira",
+        6: "Perfume", 7: "Lã", 8: "Barro", 9: "Cerâmica", 10: "Estanho",
+        15: "Cristal", 20: "Porcelana", 25: "Prata", 30: "Pérola",
+        35: "Coral", 40: "Rubi", 45: "Platina", 50: "Ouro", 60: "Diamante"
+      };
+
+      function formatTime(ms) {
+        const days = Math.floor(ms / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+        return { days, hours, minutes, seconds };
+      }
+
+      function renderTimer(id, timeObj) {
+        const html = `
+          <div class="time-box"><span class="time-val">${timeObj.days}</span><span class="time-label">Dias</span></div>
+          <div class="time-box"><span class="time-val">${timeObj.hours}</span><span class="time-label">Horas</span></div>
+          <div class="time-box"><span class="time-val">${timeObj.minutes}</span><span class="time-label">Min</span></div>
+          <div class="time-box"><span class="time-val">${timeObj.seconds}</span><span class="time-label">Seg</span></div>
+        `;
+        document.getElementById(id).innerHTML = html;
+      }
+
+      function updateTimers() {
         const now = new Date().getTime();
-        const timeRemaining = targetDate - now;
 
-        if (timeRemaining < 0) {
-          document.getElementById('countdown').innerHTML = "<div class='time-box'><span class='time-val'>❤️</span><span class='time-label'>Chegou!</span></div>";
+        // 1. Relationship Timer (Always count UP)
+        const relDiff = now - relationshipStart;
+        renderTimer('relationship-timer', formatTime(relDiff));
+
+        // 2. Wedding Timer
+        const weddingDiff = weddingDate - now;
+
+        if (weddingDiff > 0) {
+          // Future: Countdown
+          document.getElementById('wedding-title').innerText = "Contagem regressiva";
+          document.getElementById('wedding-date-display').style.display = 'block';
+          document.getElementById('bodas-display').style.display = 'none';
+          renderTimer('wedding-timer', formatTime(weddingDiff));
         } else {
-          const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+          // Past: Married Timer + Bodas
+          document.getElementById('wedding-title').innerText = "Casados há";
+          const marriedDiff = now - weddingDate;
+          const marriedTime = formatTime(marriedDiff);
+          renderTimer('wedding-timer', marriedTime);
 
-          const html = `
-            <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Dias</span></div>
-            <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Horas</span></div>
-            <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
-            <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Seg</span></div>
-          `;
-          document.getElementById('countdown').innerHTML = html;
+          // Calculate Bodas (Years)
+          const yearsMarried = Math.floor(marriedDiff / (1000 * 60 * 60 * 24 * 365.25));
+          if (yearsMarried >= 1) {
+             const bodasName = bodasMap[yearsMarried] || "Amor";
+             const bodasHtml = `<span class="material-icons">stars</span> Bodas de ${bodasName}`;
+             const bodasEl = document.getElementById('bodas-display');
+             bodasEl.innerHTML = bodasHtml;
+             bodasEl.style.display = 'inline-block';
+          } else {
+             document.getElementById('bodas-display').style.display = 'none';
+          }
         }
       }
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
+
+      setInterval(updateTimers, 1000);
+      updateTimers();
 
       // Background Hearts Animation
       setInterval(function () {
@@ -142,8 +200,6 @@
         var r_left = Math.floor(Math.random() * 100) + 1;
         var r_bg = Math.floor(Math.random() * 25) + 100;
         var r_time = Math.floor(Math.random() * 10) + 10;
-
-        // Varying opacity and blur for depth
         var r_opacity = (Math.random() * 0.5) + 0.3;
 
         $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255,182,193," + r_opacity + ");-webkit-animation:lovers " + r_time + "s ease;-moz-animation:lovers " + r_time + "s ease;-ms-animation:lovers " + r_time + "s ease;animation:lovers " + r_time + "s ease'></div>");
@@ -159,7 +215,6 @@
 
       // Surprise Button
       $('#surpriseBtn').click(function() {
-        // Confetti
         var duration = 3 * 1000;
         var animationEnd = Date.now() + duration;
         var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
@@ -170,26 +225,19 @@
 
         var interval = setInterval(function() {
           var timeLeft = animationEnd - Date.now();
-
-          if (timeLeft <= 0) {
-            return clearInterval(interval);
-          }
-
+          if (timeLeft <= 0) return clearInterval(interval);
           var particleCount = 50 * (timeLeft / duration);
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.1, 0.3), y: Math.random() - 0.2 } }));
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.7, 0.9), y: Math.random() - 0.2 } }));
         }, 250);
 
-        // Open Modal
         $('#surpriseModal').fadeIn();
       });
 
-      // Close Modal
       $('.close-modal').click(function() {
         $('#surpriseModal').fadeOut();
       });
 
-      // Close modal on click outside
       $(window).click(function(event) {
         if (event.target.id == 'surpriseModal') {
           $('#surpriseModal').fadeOut();
