@@ -4,115 +4,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aniversário de Namoro</title>
-  <!-- Importe o CSS do Material UI -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <title>Nosso Amor</title>
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="bg_heart"></div>
-  <div class="container">
-    <div class="row">
 
-      <div class="card" onclick="toggleHover(this)">
-        <div class="slick-carousel">
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-05-01_23-10-48.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-05-07_00-34-35.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-06-11_21-57-30.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-06-12_20-20-39.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-06-21_22-32-40.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-06-26_15-54-23.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-07-08_23-10-46.jpg">
-          </div>
-          <div>
-            <img class="carousel-image" alt="Foto" src="photo_2023-07-20_21-53-24.jpg">
-          </div>
-        </div>
-        <div class="content">
-          <h3>Antonio & Daniela</h3>
-          <p>No enlace de mãos, amor floresce,
-            Cumplicidade em cada verso se tece.
-            Nossos corações, juntos, eternamente aquecem.</p>
-        </div>
+  <div class="container">
+
+    <!-- Title Section -->
+    <div class="header-section fade-in">
+      <h1 class="main-title">Antonio & Daniela</h1>
+      <p class="subtitle">Eternizando nossos momentos</p>
+    </div>
+
+    <!-- Main Card with Carousel -->
+    <div class="glass-card main-card fade-in">
+      <div class="slick-carousel">
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-01_23-10-48.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-07_00-34-35.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-11_21-57-30.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-12_20-20-39.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-21_22-32-40.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-24_00-17-04.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-26_15-54-23.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-08_23-10-46.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-20_21-53-24.jpg"></div>
+      </div>
+      <div class="card-content">
+        <p class="poetic-text">"No enlace de mãos, o amor floresce.<br>Cumplicidade em cada verso se tece.<br>Nossos corações, juntos, eternamente aquecem."</p>
       </div>
     </div>
 
-    <div class="row">
-      <blockquote>
-        <p>
-          <br>
-          <span id="countdown">
-            ...contando os dias <br>
-        </p>
-        <span>Da nossa melhor decisão</span>
-      </blockquote>
+    <!-- Countdown Section -->
+    <div class="glass-card countdown-section fade-in">
+      <h3>Contando cada segundo ao seu lado</h3>
+      <div id="countdown" class="countdown-timer">
+        <!-- JS will populate this -->
+      </div>
+      <p class="since-date">Desde nossa melhor decisão</p>
     </div>
 
-    <div class="row">
-      <h1 style="color:red">Eu te amoooooooooo</h1>
-      <br>
+    <!-- Music & Surprise Section -->
+    <div class="actions-section fade-in">
+      <div class="glass-card music-card">
+        <iframe width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=0&start=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+
+      <button id="surpriseBtn" class="surprise-btn pulse">
+        <span class="material-icons">favorite</span> Clique para uma Surpresa
+      </button>
     </div>
-    <div class="row">
-      <iframe width="200" height="100" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?autoplay=1"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
+
+    <!-- Final Message -->
+    <div class="footer-section fade-in">
+      <h2 class="love-message">Eu te amo infinitamente</h2>
     </div>
 
   </div>
 
+  <!-- Modal -->
+  <div id="surpriseModal" class="modal">
+    <div class="modal-content glass-card">
+      <span class="close-modal">&times;</span>
+      <h2 class="modal-title">Minha Amada Daniela,</h2>
+      <p class="modal-text">
+        Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.<br><br>
+        Obrigado por ser quem você é e por me fazer tão feliz.<br><br>
+        Com todo meu amor,<br>Antonio.
+      </p>
+      <div class="heart-icon">❤️</div>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
   <script>
-    function toggleHover(card) {
-      card.classList.toggle('hover');
-    }
-
-    // Inicialize o carrossel com as fotos dos dois
     $(document).ready(function () {
+      // Carousel
       $('.slick-carousel').slick({
         autoplay: true,
         autoplaySpeed: 3000,
         arrows: false,
         dots: true,
         infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        fade: true,
+        cssEase: 'linear',
+        speed: 500
       });
 
-      const cards = document.querySelectorAll('.card');
-      cards.forEach(card => {
-        const hammer = new Hammer(card);
-        hammer.on('tap', () => {
-          toggleHover(card);
-        });
-      });
-
-      // Data do aniversário de namoro
+      // Countdown
       const targetDate = new Date('2022-07-28').getTime();
-
       function updateCountdown() {
         const now = new Date().getTime();
         const timeRemaining = now - targetDate;
@@ -122,34 +120,78 @@
         const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-        document.getElementById('countdown').innerHTML = `${days} Dias<br> ${hours} Horas<br> ${minutes} Minutos<br> ${seconds} Segundos<br>`;
+        const html = `
+          <div class="time-box"><span class="time-val">${days}</span><span class="time-label">Dias</span></div>
+          <div class="time-box"><span class="time-val">${hours}</span><span class="time-label">Horas</span></div>
+          <div class="time-box"><span class="time-val">${minutes}</span><span class="time-label">Min</span></div>
+          <div class="time-box"><span class="time-val">${seconds}</span><span class="time-label">Seg</span></div>
+        `;
+        document.getElementById('countdown').innerHTML = html;
       }
-
-      // Atualiza a contagem regressiva a cada segundo
       setInterval(updateCountdown, 1000);
+      updateCountdown();
 
+      // Background Hearts Animation
       setInterval(function () {
         var r_num = Math.floor(Math.random() * 40) + 1;
-        var r_size = Math.floor(Math.random() * 65) + 10;
+        var r_size = Math.floor(Math.random() * 30) + 10;
         var r_left = Math.floor(Math.random() * 100) + 1;
         var r_bg = Math.floor(Math.random() * 25) + 100;
-        var r_time = Math.floor(Math.random() * 5) + 5;
+        var r_time = Math.floor(Math.random() * 10) + 10;
 
-        $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255," + (r_bg - 25) + "," + r_bg + ",1);-webkit-animation:lovers " + r_time + "s ease;-moz-animation:lovers " + r_time + "s ease;-ms-animation:lovers " + r_time + "s ease;animation:lovers " + r_time + "s ease'></div>");
+        // Varying opacity and blur for depth
+        var r_opacity = (Math.random() * 0.5) + 0.3;
 
-        $('.bg_heart').append("<div class='heart' style='width:" + (r_size - 10) + "px;height:" + (r_size - 10) + "px;left:" + (r_left + r_num) + "%;background:rgba(255," + (r_bg - 25) + "," + (r_bg + 25) + ",1);-webkit-animation:lovers " + (r_time + 5) + "s ease;-moz-animation:lovers " + (r_time + 5) + "s ease;-ms-animation:lovers " + (r_time + 5) + "s ease;animation:lovers " + (r_time + 5) + "s ease'></div>");
+        $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255,182,193," + r_opacity + ");-webkit-animation:lovers " + r_time + "s ease;-moz-animation:lovers " + r_time + "s ease;-ms-animation:lovers " + r_time + "s ease;animation:lovers " + r_time + "s ease'></div>");
 
         $('.heart').each(function () {
           var top = $(this).css("top").replace(/[^-\d\.]/g, '');
           var width = $(this).css("width").replace(/[^-\d\.]/g, '');
           if (top <= -100 || width >= 150) {
-            $(this).detach();
+            $(this).remove();
           }
         });
-      }, 500);
-    });
+      }, 700);
 
+      // Surprise Button
+      $('#surpriseBtn').click(function() {
+        // Confetti
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+        function randomInOut(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.1, 0.3), y: Math.random() - 0.2 } }));
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
+
+        // Open Modal
+        $('#surpriseModal').fadeIn();
+      });
+
+      // Close Modal
+      $('.close-modal').click(function() {
+        $('#surpriseModal').fadeOut();
+      });
+
+      // Close modal on click outside
+      $(window).click(function(event) {
+        if (event.target.id == 'surpriseModal') {
+          $('#surpriseModal').fadeOut();
+        }
+      });
+    });
   </script>
 </body>
-
 </html>
