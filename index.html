@@ -71,6 +71,15 @@
 
     </div>
 
+    <!-- Reasons Why I Love You Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3>Por que eu te amo?</h3>
+      <button id="reasonsBtn" class="surprise-btn reasons-btn">
+        <span class="material-icons">volunteer_activism</span> Descubra um motivo
+      </button>
+      <div id="reason-display"></div>
+    </div>
+
     <!-- Music & Surprise Section -->
     <div class="actions-section fade-in">
       <div class="glass-card music-card">
@@ -192,6 +201,49 @@
 
       setInterval(updateTimers, 1000);
       updateTimers();
+
+      // Reasons Logic
+      const reasons = [
+        "Pelo seu sorriso que ilumina meu dia.",
+        "Pela forma como você cuida de mim.",
+        "Por ser minha melhor amiga.",
+        "Pelo seu abraço aconchegante.",
+        "Pela nossa cumplicidade única.",
+        "Porque você me inspira a ser melhor.",
+        "Pelo brilho dos seus olhos.",
+        "Por me apoiar em todos os momentos.",
+        "Pelas nossas conversas infinitas.",
+        "Porque ao seu lado, tudo fica perfeito.",
+        "Pelo seu coração bondoso.",
+        "Pela paz que você me traz.",
+        "Porque você é o amor da minha vida.",
+        "Pelo jeito que você me olha.",
+        "Pela nossa história linda.",
+        "Porque você me entende como ninguém.",
+        "Pelo seu cheiro que eu amo.",
+        "Porque você é meu porto seguro.",
+        "Por todos os nossos planos futuros.",
+        "Simplesmente por você existir."
+      ];
+
+      $('#reasonsBtn').click(function() {
+        const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+        const display = $('#reason-display');
+
+        display.css('opacity', 0);
+        setTimeout(function() {
+          display.text('"' + randomReason + '"');
+          display.css('opacity', 1);
+        }, 500);
+
+        // Confetti burst
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.7 },
+          colors: ['#ff6b81', '#e91e63', '#ffffff']
+        });
+      });
 
       // Background Hearts Animation
       setInterval(function () {
