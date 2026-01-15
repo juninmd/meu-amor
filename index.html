@@ -19,7 +19,17 @@
 </head>
 
 <body>
-  <div class="bg_heart"></div>
+  <!-- Intro Overlay -->
+  <div id="introOverlay" class="intro-overlay">
+    <div class="intro-content">
+      <h1>Para Daniela</h1>
+      <button id="enterBtn" class="surprise-btn">
+        <span class="material-icons">favorite</span> Entrar
+      </button>
+    </div>
+  </div>
+
+  <div class="bg_petals"></div>
 
   <div class="container">
 
@@ -83,7 +93,7 @@
     <!-- Music & Surprise Section -->
     <div class="actions-section fade-in">
       <div class="glass-card music-card">
-        <iframe width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=1&start=0"
+        <iframe id="musicPlayer" width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=1&start=0"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -101,17 +111,27 @@
 
   </div>
 
-  <!-- Modal -->
-  <div id="surpriseModal" class="modal">
-    <div class="modal-content glass-card">
-      <span class="close-modal">&times;</span>
-      <h2 class="modal-title">Minha Amada Daniela,</h2>
-      <p class="modal-text">
-        Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.<br><br>
-        Obrigado por ser quem você é e por me fazer tão feliz.<br><br>
-        Com todo meu amor,<br>Antonio.
-      </p>
-      <div class="heart-icon">❤️</div>
+  <!-- Envelope Overlay -->
+  <div id="envelopeOverlay" class="envelope-overlay">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter">
+          <span class="close-envelope-btn">&times;</span>
+          <h2>Minha Amada Daniela,</h2>
+          <p>
+            Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.<br><br>
+            Obrigado por ser quem você é e por me fazer tão feliz.<br><br>
+            Com todo meu amor,<br>Antonio.
+          </p>
+          <div style="color: #e91e63; font-size: 20px; margin-top: 10px;">❤️</div>
+        </div>
+        <div class="pocket-bottom"></div>
+        <div class="pocket-left"></div>
+        <div class="pocket-right"></div>
+        <div class="envelope-flap"></div>
+      </div>
+      <div class="click-hint">Clique para abrir</div>
     </div>
   </div>
 
@@ -226,15 +246,45 @@
         "Simplesmente por você existir."
       ];
 
+      // Intro Overlay
+      $('#enterBtn').click(function() {
+        $('#introOverlay').fadeOut(1000, function() {
+          $(this).remove();
+        });
+        // Try to trigger autoplay by updating src with autoplay=1
+        const iframe = $('#musicPlayer');
+        const src = iframe.attr('src');
+        if (src.indexOf('autoplay') === -1) {
+           iframe.attr('src', src + "&autoplay=1");
+        }
+      });
+
       $('#reasonsBtn').click(function() {
+        // Disable button while typing
+        const btn = $(this);
+        if (btn.prop('disabled')) return;
+        btn.prop('disabled', true);
+
         const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
         const display = $('#reason-display');
 
-        display.css('opacity', 0);
-        setTimeout(function() {
-          display.text('"' + randomReason + '"');
-          display.css('opacity', 1);
-        }, 500);
+        display.text(''); // Clear previous text
+        display.css('opacity', 1);
+
+        let i = 0;
+        const text = '"' + randomReason + '"';
+
+        function typeWriter() {
+          if (i < text.length) {
+            display.text(display.text() + text.charAt(i));
+            i++;
+            setTimeout(typeWriter, 50);
+          } else {
+             btn.prop('disabled', false);
+          }
+        }
+
+        typeWriter();
 
         // Confetti burst
         confetti({
@@ -245,25 +295,21 @@
         });
       });
 
-      // Background Hearts Animation
+      // Background Petals Animation
       setInterval(function () {
-        var r_num = Math.floor(Math.random() * 40) + 1;
-        var r_size = Math.floor(Math.random() * 30) + 10;
+        var r_size = Math.floor(Math.random() * 15) + 10;
         var r_left = Math.floor(Math.random() * 100) + 1;
-        var r_bg = Math.floor(Math.random() * 25) + 100;
         var r_time = Math.floor(Math.random() * 10) + 10;
-        var r_opacity = (Math.random() * 0.5) + 0.3;
 
-        $('.bg_heart').append("<div class='heart' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;background:rgba(255,182,193," + r_opacity + ");-webkit-animation:lovers " + r_time + "s ease;-moz-animation:lovers " + r_time + "s ease;-ms-animation:lovers " + r_time + "s ease;animation:lovers " + r_time + "s ease'></div>");
+        $('.bg_petals').append("<div class='petal' style='width:" + r_size + "px;height:" + r_size + "px;left:" + r_left + "%;animation-duration:" + r_time + "s'></div>");
 
-        $('.heart').each(function () {
-          var top = $(this).css("top").replace(/[^-\d\.]/g, '');
-          var width = $(this).css("width").replace(/[^-\d\.]/g, '');
-          if (top <= -100 || width >= 150) {
+        $('.petal').each(function () {
+          var top = $(this).offset().top;
+          if (top > window.innerHeight) {
             $(this).remove();
           }
         });
-      }, 700);
+      }, 400);
 
       // Surprise Button
       $('#surpriseBtn').click(function() {
@@ -283,17 +329,21 @@
           confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInOut(0.7, 0.9), y: Math.random() - 0.2 } }));
         }, 250);
 
-        $('#surpriseModal').fadeIn();
+        $('#envelopeOverlay').fadeIn().css('display', 'flex');
       });
 
-      $('.close-modal').click(function() {
-        $('#surpriseModal').fadeOut();
+      $('#envelopeWrapper').click(function() {
+        $(this).addClass('open');
+        $('.click-hint').hide();
       });
 
-      $(window).click(function(event) {
-        if (event.target.id == 'surpriseModal') {
-          $('#surpriseModal').fadeOut();
-        }
+      $('.close-envelope-btn').click(function(e) {
+        e.stopPropagation();
+        $('#envelopeOverlay').fadeOut();
+        setTimeout(function() {
+          $('#envelopeWrapper').removeClass('open');
+          $('.click-hint').show();
+        }, 500);
       });
     });
   </script>

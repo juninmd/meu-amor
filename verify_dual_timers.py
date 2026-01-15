@@ -24,6 +24,11 @@ def run():
         page1.goto(f"file://{os.getcwd()}/index.html")
         page1.wait_for_timeout(1000)
 
+        # Click Enter on Overlay
+        if page1.is_visible("#enterBtn"):
+            page1.click("#enterBtn")
+            page1.wait_for_timeout(1000)
+
         # Verify Relationship Timer
         rel_timer = page1.inner_text("#relationship-timer")
         print(f"Rel Timer (2024): {rel_timer.replace('\\n', ' ')}")
@@ -68,6 +73,11 @@ def run():
         page2 = context2.new_page()
         page2.goto(f"file://{os.getcwd()}/index.html")
         page2.wait_for_timeout(1000)
+
+        # Click Enter on Overlay
+        if page2.is_visible("#enterBtn"):
+            page2.click("#enterBtn")
+            page2.wait_for_timeout(1000)
 
         # Verify Wedding Title (Should change to "Casados há")
         wedding_title_2 = page2.inner_text("#wedding-title")
