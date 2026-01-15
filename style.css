@@ -28,8 +28,8 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Background Hearts */
-.bg_heart {
+/* Background Petals */
+.bg_petals {
   position: fixed;
   top: 0;
   left: 0;
@@ -40,48 +40,40 @@ body {
   pointer-events: none;
 }
 
-.heart {
+/* Falling Petals */
+.petal {
   position: absolute;
-  top: -50%;
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -m-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  background: linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%);
+  border-radius: 150% 0 150% 0;
+  animation: fall linear infinite;
   z-index: 0;
+  opacity: 0.8;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
 }
 
-.heart:before {
-  position: absolute;
-  top: -50%;
-  left: 0;
-  display: block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: 100%;
-}
-
-.heart:after {
-  position: absolute;
-  top: 0;
-  right: -50%;
-  display: block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  border-radius: 100%;
-}
-
-@keyframes lovers {
-  0% { top: 110%; }
-  100% { top: -10%; }
-}
-
-@-webkit-keyframes lovers {
-  0% { top: 110%; }
-  100% { top: -10%; }
+@keyframes fall {
+  0% {
+    top: -10%;
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(-20px) rotate(45deg);
+  }
+  40% {
+    transform: translateX(20px) rotate(90deg);
+  }
+  60% {
+    transform: translateX(-20px) rotate(135deg);
+  }
+  80% {
+    transform: translateX(20px) rotate(180deg);
+  }
+  100% {
+    top: 110%;
+    transform: translateX(-20px) rotate(225deg);
+    opacity: 0;
+  }
 }
 
 /* Container */
@@ -456,4 +448,238 @@ body {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ENVELOPE SURPRISE STYLES --- */
+.envelope-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 3000;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.envelope-back {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #c2185b; /* Dark Pink */
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 110px solid #d81b60; /* Medium Pink */
+  transform-origin: top;
+  transition: transform 0.6s ease;
+  z-index: 5;
+}
+
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 150px solid #e91e63; /* Main Pink */
+  border-right: 150px solid #d81b60;
+  border-bottom: 100px solid #c2185b;
+  border-top: 100px solid transparent;
+  z-index: 4;
+  border-radius: 0 0 10px 10px;
+}
+
+/* The actual "pocket" visual using borders is tricky for 3 layers.
+   Simplifying: Pocket is just front triangles. */
+.envelope-front {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 150px 100px 150px; /* Top Right Bottom Left */
+    border-color: transparent transparent #e91e63 transparent;
+    z-index: 4;
+    border-radius: 0 0 10px 10px; /* Doesnt work well with borders */
+}
+/* Let's try the border approach again carefully */
+.pocket-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 100px 0 100px 150px;
+    border-color: transparent transparent transparent #e91e63;
+    z-index: 4;
+    border-radius: 0 0 0 10px;
+}
+.pocket-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 100px 150px 100px 0;
+    border-color: transparent #d81b60 transparent transparent;
+    z-index: 4;
+    border-radius: 0 0 10px 0;
+}
+.pocket-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 150px 110px 150px;
+    border-color: transparent transparent #c2185b transparent;
+    z-index: 3;
+    border-radius: 0 0 10px 10px;
+}
+
+.letter {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 270px;
+  height: 180px;
+  background: #fff;
+  z-index: 2;
+  transition: transform 0.8s ease 0.4s;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.letter h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #e91e63;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.letter p {
+    font-size: 0.7rem;
+    color: #555;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+/* Open Animation */
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-wrapper.open .letter {
+    transform: translateY(-200px) scale(1.5);
+    z-index: 6; /* Brings it in front of everything */
+    height: auto;
+    min-height: 250px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.envelope-wrapper.open .envelope-flap,
+.envelope-wrapper.open .pocket-left,
+.envelope-wrapper.open .pocket-right,
+.envelope-wrapper.open .pocket-bottom,
+.envelope-wrapper.open .envelope-back {
+    opacity: 0;
+    transition: opacity 0.5s ease 1.2s;
+    pointer-events: none;
+}
+
+.click-hint {
+    color: white;
+    margin-top: 250px;
+    position: absolute;
+    font-family: 'Montserrat', sans-serif;
+    animation: fadeIn 1s infinite alternate;
+    pointer-events: none;
+}
+
+.close-envelope-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.envelope-wrapper.open .close-envelope-btn {
+    display: block;
+}
+
+/* Intro Overlay */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+.intro-content {
+    text-align: center;
+    color: white;
+}
+
+.intro-content h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    margin-bottom: 30px;
+    color: #e91e63;
+    animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+    0% { text-shadow: 0 0 10px #e91e63; }
+    50% { text-shadow: 0 0 20px #ff6b81, 0 0 30px #e91e63; }
+    100% { text-shadow: 0 0 10px #e91e63; }
 }

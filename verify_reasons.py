@@ -8,6 +8,11 @@ def run():
         page = browser.new_page()
         page.goto(f"file://{os.getcwd()}/index.html")
 
+        # Handle Overlay
+        if page.is_visible("#enterBtn"):
+            page.click("#enterBtn")
+            page.wait_for_timeout(1000)
+
         # Verify Reasons Section exists
         reasons_btn = page.locator("#reasonsBtn")
         assert reasons_btn.is_visible(), "Reasons button not found"
@@ -16,8 +21,8 @@ def run():
         print("Clicking 'Reasons' button...")
         reasons_btn.click()
 
-        # Wait for animation/text
-        time.sleep(1)
+        # Wait for animation/text (typing takes longer now)
+        time.sleep(3)
 
         # Check text in display
         display = page.locator("#reason-display")
