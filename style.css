@@ -450,6 +450,40 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Intro Overlay */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease;
+}
+
+.intro-content {
+    text-align: center;
+    color: white;
+}
+
+.intro-content h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    margin-bottom: 30px;
+    color: #e91e63;
+    animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+    0% { text-shadow: 0 0 10px #e91e63; }
+    50% { text-shadow: 0 0 20px #ff6b81, 0 0 30px #e91e63; }
+    100% { text-shadow: 0 0 10px #e91e63; }
+}
+
 /* --- ENVELOPE SURPRISE STYLES --- */
 .envelope-overlay {
   position: fixed;
@@ -648,38 +682,4 @@ body {
 
 .envelope-wrapper.open .close-envelope-btn {
     display: block;
-}
-
-/* Intro Overlay */
-.intro-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    z-index: 5000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 1s ease;
-}
-
-.intro-content {
-    text-align: center;
-    color: white;
-}
-
-.intro-content h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 4rem;
-    margin-bottom: 30px;
-    color: #e91e63;
-    animation: pulse-text 2s infinite;
-}
-
-@keyframes pulse-text {
-    0% { text-shadow: 0 0 10px #e91e63; }
-    50% { text-shadow: 0 0 20px #ff6b81, 0 0 30px #e91e63; }
-    100% { text-shadow: 0 0 10px #e91e63; }
 }
