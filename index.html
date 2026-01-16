@@ -30,6 +30,7 @@
   </div>
 
   <div class="bg_petals"></div>
+  <div class="bg_hearts"></div>
 
   <div class="container">
 
@@ -135,12 +136,31 @@
     </div>
   </div>
 
+  <!-- Konami Code Modal -->
+  <div id="konamiModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 class="modal-title">Você descobriu um segredo! 💖</h2>
+      <p class="modal-text">Assim como esse código secreto, meu amor por você é cheio de surpresas maravilhosas. Você desbloqueou a chave do meu coração para todo o sempre!</p>
+      <div style="font-size: 4rem; margin-top: 20px;">💑</div>
+    </div>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
 
   <script>
     $(document).ready(function () {
+      // Vanilla Tilt Initialization
+      VanillaTilt.init(document.querySelectorAll(".glass-card"), {
+        max: 5,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+        scale: 1.02
+      });
       // Carousel
       $('.slick-carousel').slick({
         autoplay: true,
@@ -345,6 +365,81 @@
           $('.click-hint').show();
         }, 500);
       });
+
+      // --- Heart Cursor Trail ---
+      let lastTime = 0;
+      $(document).mousemove(function(e) {
+        const now = Date.now();
+        if (now - lastTime < 50) return; // Throttle
+        lastTime = now;
+
+        const heart = $('<div class="heart-trail">❤</div>');
+        heart.css({
+          left: e.clientX,
+          top: e.clientY
+        });
+        $('body').append(heart);
+        setTimeout(() => heart.remove(), 1000);
+      });
+
+      // --- Rising Hearts Background ---
+      setInterval(function () {
+        var r_size = Math.floor(Math.random() * 20) + 10;
+        var r_left = Math.floor(Math.random() * 100) + 1;
+        var r_time = Math.floor(Math.random() * 15) + 10;
+
+        // Randomly choose a heart icon
+        var icons = ['favorite', 'favorite_border', 'volunteer_activism'];
+        var icon = icons[Math.floor(Math.random() * icons.length)];
+
+        var el = $("<div class='heart-float material-icons'>" + icon + "</div>");
+        el.css({
+          'font-size': r_size + 'px',
+          'left': r_left + '%',
+          'animation-duration': r_time + 's'
+        });
+
+        $('.bg_hearts').append(el);
+
+        // Remove after animation
+        setTimeout(function() {
+          el.remove();
+        }, r_time * 1000);
+      }, 800);
+
+      // --- Konami Code Easter Egg ---
+      // Up, Up, Down, Down, Left, Right, Left, Right, B, A
+      const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let konamiIndex = 0;
+
+      $(document).keydown(function(e) {
+        if (e.key === konamiCode[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konamiCode.length) {
+            // Trigger Easter Egg
+            $('#konamiModal').fadeIn().css('display', 'flex');
+            confetti({
+              particleCount: 200,
+              spread: 120,
+              origin: { y: 0.6 }
+            });
+            konamiIndex = 0;
+          }
+        } else {
+          konamiIndex = 0;
+        }
+      });
+
+      $('.close-modal').click(function() {
+        $('#konamiModal').fadeOut();
+      });
+
+      $(window).click(function(e) {
+        if ($(e.target).hasClass('modal')) {
+          $('#konamiModal').fadeOut();
+        }
+      });
+
     });
   </script>
 </body>
