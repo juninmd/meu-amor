@@ -40,6 +40,18 @@ body {
   pointer-events: none;
 }
 
+/* Background Hearts (Rising) */
+.bg_hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 /* Falling Petals */
 .petal {
   position: absolute;
@@ -49,6 +61,27 @@ body {
   z-index: 0;
   opacity: 0.8;
   box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+/* Rising Hearts */
+.heart-float {
+  position: absolute;
+  color: rgba(255, 105, 180, 0.3);
+  font-family: 'Material Icons';
+  font-size: 20px;
+  animation: rise linear infinite;
+  z-index: 0;
+  user-select: none;
+}
+
+/* Cursor Trail Hearts */
+.heart-trail {
+  position: fixed;
+  color: #ff6b81;
+  font-size: 14px;
+  pointer-events: none;
+  animation: fadeOutUp 1s forwards;
+  z-index: 9999;
 }
 
 @keyframes fall {
@@ -73,6 +106,40 @@ body {
     top: 110%;
     transform: translateX(-20px) rotate(225deg);
     opacity: 0;
+  }
+}
+
+@keyframes rise {
+  0% {
+    bottom: -10%;
+    transform: translateX(0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(20px) scale(1.1);
+  }
+  50% {
+    transform: translateX(-20px) scale(1.2);
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    bottom: 110%;
+    transform: translateX(10px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.5);
   }
 }
 
@@ -334,7 +401,7 @@ body {
 #reason-display {
   font-family: 'Great Vibes', cursive;
   font-size: 2.2rem;
-  min-height: 80px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,6 +409,33 @@ body {
   color: #fff;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
   transition: opacity 0.5s ease;
+  position: relative;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+#reason-display::before {
+  content: '“';
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5rem;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+#reason-display::after {
+  content: '”';
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5rem;
+  position: absolute;
+  bottom: -40px;
+  right: 10px;
+  color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
 }
 
 /* Modal */
