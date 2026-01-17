@@ -82,6 +82,41 @@
 
     </div>
 
+    <!-- Timeline Section -->
+    <div class="timeline-section fade-in">
+      <h2 class="section-title">Nossa Jornada</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content glass-card">
+            <h3>O Início</h3>
+            <p class="timeline-date">28 de Julho de 2022</p>
+            <p>O dia em que nossas vidas se cruzaram e tudo mudou para melhor.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content glass-card">
+            <h3>1º Ano Juntos</h3>
+            <p class="timeline-date">28 de Julho de 2023</p>
+            <p>365 dias de muito amor, aprendizado e cumplicidade.</p>
+          </div>
+        </div>
+         <div class="timeline-item left">
+          <div class="timeline-content glass-card">
+            <h3>Hoje</h3>
+            <p class="timeline-date">Cada instante</p>
+            <p>Continuamos escrevendo nossa linda história, dia após dia.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content glass-card">
+            <h3>O Grande Dia</h3>
+            <p class="timeline-date">29 de Novembro de 2025</p>
+            <p>O começo do nosso "para sempre".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Reasons Why I Love You Section -->
     <div class="glass-card fade-in" style="max-width: 600px;">
       <h3>Por que eu te amo?</h3>
@@ -93,11 +128,17 @@
 
     <!-- Music & Surprise Section -->
     <div class="actions-section fade-in">
-      <div class="glass-card music-card">
-        <iframe id="musicPlayer" width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=1&start=0"
+      <div class="glass-card music-card vinyl-wrapper">
+        <div class="vinyl-record">
+            <div class="vinyl-center"></div>
+        </div>
+        <div class="music-controls">
+             <p>Nossa Trilha Sonora</p>
+             <iframe id="musicPlayer" width="100%" height="80" src="https://www.youtube-nocookie.com/embed/cpGTmMLwWo8?controls=1&start=0"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
+        </div>
       </div>
 
       <button id="surpriseBtn" class="surprise-btn pulse">
@@ -153,6 +194,20 @@
 
   <script>
     $(document).ready(function () {
+      // --- Click Heart Effect ---
+      $(document).click(function(e) {
+         // Avoid double trigger on buttons that already have effects
+         if ($(e.target).closest('button').length || $(e.target).closest('.envelope-wrapper').length) return;
+
+         const heart = $('<div class="heart-click material-icons">favorite</div>');
+         heart.css({
+            left: e.clientX,
+            top: e.clientY
+         });
+         $('body').append(heart);
+         setTimeout(() => heart.remove(), 1000);
+      });
+
       // Vanilla Tilt Initialization
       VanillaTilt.init(document.querySelectorAll(".glass-card"), {
         max: 5,
