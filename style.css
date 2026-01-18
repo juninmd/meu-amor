@@ -555,6 +555,7 @@ body {
   gap: 20px;
   padding: 20px;
   overflow: hidden;
+  position: relative;
 }
 
 .vinyl-record {
@@ -569,9 +570,15 @@ body {
       #222 4px
   );
   position: relative;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  animation: spin 5s linear infinite;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 10px rgba(255, 255, 255, 0.05);
+  animation: spin 5s linear infinite, vinylPulse 2s ease-in-out infinite alternate;
   flex-shrink: 0;
+  z-index: 2;
+}
+
+@keyframes vinylPulse {
+  0% { box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 10px rgba(255, 255, 255, 0.05); }
+  100% { box-shadow: 0 0 0 6px rgba(233, 30, 99, 0.3), 0 0 0 15px rgba(233, 30, 99, 0.1); }
 }
 
 .vinyl-center {
@@ -979,4 +986,176 @@ body {
     0% { text-shadow: 0 0 10px #e91e63; }
     50% { text-shadow: 0 0 20px #ff6b81, 0 0 30px #e91e63; }
     100% { text-shadow: 0 0 10px #e91e63; }
+}
+
+/* --- MEMORY GAME STYLES --- */
+.memory-game {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  perspective: 1000px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.memory-card {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.memory-card.hidden {
+   visibility: hidden;
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.front-face {
+  transform: rotateY(180deg);
+  background: #fff;
+}
+
+.front-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.back-face {
+  background: linear-gradient(135deg, #ff6b81, #e91e63);
+  color: white;
+  font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+  .memory-game {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+}
+
+/* --- BUCKET LIST STYLES --- */
+.bucket-list {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bucket-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+
+.bucket-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.bucket-item input[type="checkbox"] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #ff6b81;
+  border-radius: 5px;
+  margin-right: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.bucket-item input[type="checkbox"]:checked {
+  background: #ff6b81;
+}
+
+.bucket-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  font-weight: bold;
+}
+
+.bucket-item label {
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: color 0.3s, text-decoration 0.3s;
+}
+
+.bucket-item input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- FLOATING BOTTLE --- */
+.floating-bottle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  animation: floatBottle 3s ease-in-out infinite;
+  transition: transform 0.3s;
+}
+
+.floating-bottle:hover {
+  transform: scale(1.1) rotate(10deg);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.bottle-icon {
+  font-size: 30px;
+}
+
+@keyframes floatBottle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.bottle-content {
+  background: linear-gradient(135deg, #e0f7fa, #80deea); /* Cyan/Blueish for water vibe */
+  color: #006064;
+  border-color: #00acc1;
 }
