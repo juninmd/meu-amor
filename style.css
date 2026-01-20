@@ -1159,3 +1159,163 @@ body {
   color: #006064;
   border-color: #00acc1;
 }
+
+/* --- LOVE QUIZ STYLES --- */
+.quiz-container {
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.quiz-question {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.quiz-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.quiz-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+
+.quiz-btn.correct {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+.quiz-btn.wrong {
+  background: #f44336;
+  border-color: #f44336;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.quiz-result {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  min-height: 30px;
+}
+
+/* --- LOVE CALCULATOR STYLES --- */
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calc-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 15px;
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.calc-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.calc-input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
+.calc-heart {
+  font-size: 2rem;
+  color: #e91e63;
+  animation: pulse 1s infinite;
+}
+
+.calc-result {
+  margin-top: 20px;
+  font-size: 3rem;
+  font-family: 'Great Vibes', cursive;
+  color: #ff6b81;
+  text-shadow: 0 0 10px rgba(255, 107, 129, 0.5);
+  min-height: 60px;
+}
+
+/* --- SCRATCH CARD (RASPADINHA) --- */
+.scratch-card-wrapper {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  user-select: none;
+}
+
+.scratch-prize {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #fff, #f8bbd0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #c2185b;
+  z-index: 1;
+}
+
+.scratch-prize h4 {
+  margin: 0;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+}
+
+.scratch-prize p {
+  margin: 5px 0 0 0;
+  font-weight: 600;
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="gold" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>') 12 12, auto;
+}
