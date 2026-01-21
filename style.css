@@ -40,6 +40,17 @@ body {
   pointer-events: none;
 }
 
+/* Starfield Background */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Behind everything */
+  pointer-events: none;
+}
+
 /* Background Hearts (Rising) */
 .bg_hearts {
   position: fixed;
@@ -195,6 +206,16 @@ body {
 }
 
 /* Typography */
+.typewriter-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 10px;
+  min-height: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
 .main-title {
   font-family: 'Great Vibes', cursive;
   font-size: 5rem;
@@ -1060,7 +1081,206 @@ body {
   }
 }
 
+/* --- LOVE MAP STYLES --- */
+.love-map-container {
+    width: 100%;
+    height: 300px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.map-bg {
+    width: 100%;
+    height: 100%;
+    /* Abstract map background pattern */
+    background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
+                      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 20%);
+    position: relative;
+}
+
+.map-pin {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    color: #e91e63;
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.map-pin .material-icons {
+    font-size: 30px;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    animation: bounce 2s infinite;
+}
+
+.map-pin:hover {
+    transform: translate(-50%, -110%) scale(1.2);
+}
+
+.pin-label {
+    background: rgba(255,255,255,0.9);
+    color: #333;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-top: 5px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.map-pin:hover .pin-label {
+    opacity: 1;
+}
+
+.map-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.map-lines line {
+    stroke: rgba(255, 255, 255, 0.3);
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+    animation: dash 30s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* --- TIME CAPSULE STYLES --- */
+.time-capsule-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.lock-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.lock-icon-wrapper:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(233, 30, 99, 0.4);
+  border-color: #e91e63;
+}
+
+.lock-icon-wrapper .material-icons {
+  font-size: 40px;
+  color: #fff;
+  transition: transform 0.5s;
+}
+
+.lock-icon-wrapper.unlocked {
+  background: rgba(76, 175, 80, 0.2); /* Green tint */
+  border-color: #4caf50;
+}
+
+.lock-icon-wrapper.unlocked .lock-icon {
+  display: none;
+}
+
+.lock-icon-wrapper .unlock-icon {
+  display: none;
+  font-size: 40px;
+  color: #4caf50;
+}
+
+.lock-icon-wrapper.unlocked .unlock-icon {
+  display: block;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.capsule-date {
+  font-size: 0.9rem;
+  color: #aaa;
+  font-style: italic;
+}
+
+.small-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.capsule-content {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2); /* Orange/Gold for future/precious */
+  color: #5d4037;
+  border-color: #ff9800;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
 /* --- BUCKET LIST STYLES --- */
+.bucket-progress-container {
+  width: 100%;
+  height: 25px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bucket-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff6b81, #e91e63);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+}
+
+#bucketProgressText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  z-index: 2;
+}
+
 .bucket-list {
   text-align: left;
   display: flex;
