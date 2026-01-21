@@ -118,7 +118,50 @@ $(document).ready(function () {
     $('#bottleModal').fadeOut();
   });
 
+  // --- Time Capsule Logic ---
+  $('#openCapsuleBtn, #capsuleLockBtn').click(function() {
+      // Logic to check date (mocked to allow opening with a trick or just open for now)
+      // Real usage: const now = new Date(); const target = new Date('2025-11-29');
+      // For demo, we simulate a "shaking lock" then open or just open
+
+      const lock = $('#capsuleLockBtn');
+      const btn = $('#openCapsuleBtn');
+
+      // Add shake animation
+      lock.css('animation', 'shake 0.5s');
+      setTimeout(() => lock.css('animation', ''), 500);
+
+      // Simulate unlocking process
+      btn.text('Destrancando...');
+      setTimeout(() => {
+          lock.addClass('unlocked');
+          btn.text('Abrir Mensagem');
+          btn.off('click').click(function() {
+             $('#capsuleModal').fadeIn().css('display', 'flex');
+             confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#FFD700', '#FFA500'] // Gold/Orange
+             });
+          });
+      }, 1500);
+  });
+
+  $('.close-capsule').click(function() {
+     $('#capsuleModal').fadeOut();
+  });
+
   // --- Bucket List Logic (LocalStorage) ---
+  function updateBucketProgress() {
+      const total = $('.bucket-item input[type="checkbox"]').length;
+      const checked = $('.bucket-item input[type="checkbox"]:checked').length;
+      const percent = total === 0 ? 0 : Math.round((checked / total) * 100);
+
+      $('#bucketProgressBar').css('width', percent + '%');
+      $('#bucketProgressText').text(percent + '% Realizado');
+  }
+
   // Load saved state
   $('.bucket-item input[type="checkbox"]').each(function() {
      const id = $(this).attr('id');
@@ -126,10 +169,14 @@ $(document).ready(function () {
      $(this).prop('checked', checked);
   });
 
+  // Initial update
+  updateBucketProgress();
+
   // Save state on change
-  $('.bucket-item input[type="checkbox"]').change(function() {
+  $('.bucket-item input[type="checkbox"]').change(function(event) {
      const id = $(this).attr('id');
      localStorage.setItem(id, $(this).prop('checked'));
+     updateBucketProgress();
 
      if($(this).prop('checked')) {
         confetti({
@@ -272,6 +319,7 @@ $(document).ready(function () {
   $('#enterBtn').click(function() {
     $('#introOverlay').fadeOut(1000, function() {
       $(this).remove();
+      typeGreeting();
     });
     // Try to trigger autoplay by updating src with autoplay=1
     const iframe = $('#musicPlayer');
@@ -280,6 +328,20 @@ $(document).ready(function () {
        iframe.attr('src', src + "&autoplay=1");
     }
   });
+
+  function typeGreeting() {
+    const text = "Olá, amor da minha vida...";
+    const el = $('#greeting-typewriter');
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        el.text(el.text() + text.charAt(i));
+        i++;
+        setTimeout(type, 100);
+      }
+    }
+    setTimeout(type, 500);
+  }
 
   $('#reasonsBtn').click(function() {
     // Disable button while typing
@@ -596,6 +658,85 @@ $(document).ready(function () {
   // Initialize Quiz if element exists
   if ($('#quiz-box').length) {
      loadQuiz();
+  }
+
+  // --- STARFIELD BACKGROUND ---
+  const starCanvas = document.getElementById('starfield');
+  if (starCanvas) {
+      const starCtx = starCanvas.getContext('2d');
+      let stars = [];
+      const numStars = 80;
+      let width, height;
+
+      function resizeStars() {
+          width = window.innerWidth;
+          height = window.innerHeight;
+          starCanvas.width = width;
+          starCanvas.height = height;
+      }
+
+      class Star {
+          constructor() {
+              this.x = Math.random() * width;
+              this.y = Math.random() * height;
+              this.vx = (Math.random() - 0.5) * 0.2;
+              this.vy = (Math.random() - 0.5) * 0.2;
+              this.size = Math.random() * 2;
+          }
+          update() {
+              this.x += this.vx;
+              this.y += this.vy;
+              if (this.x < 0) this.x = width;
+              if (this.x > width) this.x = 0;
+              if (this.y < 0) this.y = height;
+              if (this.y > height) this.y = 0;
+          }
+          draw() {
+              starCtx.fillStyle = 'rgba(255, 255, 255, ' + (Math.random() * 0.5 + 0.3) + ')';
+              starCtx.beginPath();
+              starCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+              starCtx.fill();
+          }
+      }
+
+      function initStars() {
+          resizeStars();
+          for(let i=0; i<numStars; i++) stars.push(new Star());
+          animateStars();
+      }
+
+      function animateStars() {
+          starCtx.clearRect(0, 0, width, height);
+
+          // Update and Draw Stars
+          stars.forEach(star => {
+              star.update();
+              star.draw();
+          });
+
+          // Draw Constellations (Connections)
+          starCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+          starCtx.lineWidth = 0.5;
+          for (let i = 0; i < stars.length; i++) {
+              for (let j = i + 1; j < stars.length; j++) {
+                  const dx = stars[i].x - stars[j].x;
+                  const dy = stars[i].y - stars[j].y;
+                  const dist = Math.sqrt(dx * dx + dy * dy);
+
+                  if (dist < 100) {
+                      starCtx.beginPath();
+                      starCtx.moveTo(stars[i].x, stars[i].y);
+                      starCtx.lineTo(stars[j].x, stars[j].y);
+                      starCtx.stroke();
+                  }
+              }
+          }
+
+          requestAnimationFrame(animateStars);
+      }
+
+      window.addEventListener('resize', resizeStars);
+      initStars();
   }
 
 });

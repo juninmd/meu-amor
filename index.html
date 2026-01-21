@@ -31,11 +31,13 @@
 
   <div class="bg_petals"></div>
   <div class="bg_hearts"></div>
+  <canvas id="starfield"></canvas>
 
   <div class="container">
 
     <!-- Title Section -->
     <div class="header-section fade-in">
+      <div id="greeting-typewriter" class="typewriter-text"></div>
       <h1 class="main-title">Antonio & Daniela</h1>
       <p class="subtitle">Eternizando nossos momentos</p>
     </div>
@@ -82,6 +84,33 @@
 
     </div>
 
+    <!-- Love Map Section -->
+    <div class="glass-card fade-in" style="max-width: 800px;">
+        <h3 class="section-title">Mapa do Nosso Amor</h3>
+        <div class="love-map-container">
+            <!-- Simple SVG Map Representation or Styled Divs -->
+            <div class="map-bg">
+                <div class="map-pin" style="top: 30%; left: 40%;" title="Onde nos conhecemos">
+                    <span class="material-icons">place</span>
+                    <span class="pin-label">O Início</span>
+                </div>
+                <div class="map-pin" style="top: 50%; left: 60%;" title="Nosso primeiro beijo">
+                    <span class="material-icons">favorite</span>
+                    <span class="pin-label">Primeiro Beijo</span>
+                </div>
+                <div class="map-pin" style="top: 70%; left: 30%;" title="Nossa futura casa">
+                    <span class="material-icons">home</span>
+                    <span class="pin-label">Futuro Lar</span>
+                </div>
+                <!-- Connecting lines could be SVG lines -->
+                <svg class="map-lines">
+                    <line x1="40%" y1="30%" x2="60%" y2="50%" />
+                    <line x1="60%" y1="50%" x2="30%" y2="70%" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <!-- Timeline Section -->
     <div class="timeline-section fade-in">
       <h2 class="section-title">Nossa Jornada</h2>
@@ -120,6 +149,12 @@
     <!-- Bucket List Section -->
     <div class="glass-card fade-in" style="max-width: 600px;">
       <h3 class="section-title">Nossos Sonhos</h3>
+
+      <div class="bucket-progress-container">
+        <div class="bucket-progress-bar" id="bucketProgressBar"></div>
+        <span id="bucketProgressText">0% Realizado</span>
+      </div>
+
       <div class="bucket-list">
         <div class="bucket-item">
           <input type="checkbox" id="bucket1">
@@ -145,6 +180,20 @@
         <div class="bucket-add">
            <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">E muitos outros sonhos para realizar ao seu lado...</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Time Capsule Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Cápsula do Tempo</h3>
+      <div class="time-capsule-container">
+         <div class="lock-icon-wrapper" id="capsuleLockBtn">
+            <span class="material-icons lock-icon">lock</span>
+            <span class="material-icons unlock-icon">lock_open</span>
+         </div>
+         <p>Uma mensagem guardada para o futuro...</p>
+         <p class="capsule-date">Abrir em: 29/11/2025</p>
+         <button id="openCapsuleBtn" class="surprise-btn small-btn">Tentar Abrir</button>
       </div>
     </div>
 
@@ -251,6 +300,22 @@
       <h2 class="modal-title">Mensagem do Destino</h2>
       <p id="bottleMessage" class="modal-text"></p>
       <div style="font-size: 3rem; margin-top: 20px;">💌</div>
+    </div>
+  </div>
+
+  <!-- Time Capsule Modal -->
+  <div id="capsuleModal" class="modal">
+    <div class="modal-content capsule-content">
+      <span class="close-modal close-capsule">&times;</span>
+      <h2 class="modal-title">Cápsula do Tempo Aberta!</h2>
+      <p class="modal-text">
+        Meu amor, se você está lendo isso, saiba que meu amor por você só cresceu desde o dia em que escrevi isso.
+        <br><br>
+        Prometo continuar te fazendo feliz, realizando nossos sonhos e construindo nossa família.
+        <br><br>
+        Você é meu passado, meu presente e meu futuro.
+      </p>
+      <div style="font-size: 4rem; margin-top: 20px;">💍</div>
     </div>
   </div>
 
