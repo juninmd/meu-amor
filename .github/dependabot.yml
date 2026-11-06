@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Actions do base-actions consumidas via @main: manter os pins em dia aqui
+  # (quebra de dependencia em cadeia de suprimentos e o risco de tags moveis).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns: ['*']
+    open-pull-requests-limit: 5
+
