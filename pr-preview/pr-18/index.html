@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosso Amor</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Intro Overlay -->
+  <div id="introOverlay" class="intro-overlay">
+    <div class="intro-content">
+      <h1>Para Daniela</h1>
+      <button id="enterBtn" class="surprise-btn">
+        <span class="material-icons">favorite</span> Entrar
+      </button>
+    </div>
+  </div>
+
+  <div class="bg_petals"></div>
+  <div class="bg_hearts"></div>
+  <canvas id="starfield"></canvas>
+
+  <div class="container">
+
+    <!-- Title Section -->
+    <div class="header-section fade-in">
+      <div id="greeting-typewriter" class="typewriter-text"></div>
+      <h1 class="main-title">Antonio & Daniela</h1>
+      <p class="subtitle">Eternizando nossos momentos</p>
+    </div>
+
+    <!-- Main Card with Carousel -->
+    <div class="glass-card main-card fade-in">
+      <div class="slick-carousel">
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-01_23-10-48.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-07_00-34-35.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-11_21-57-30.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-12_20-20-39.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-21_22-32-40.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-24_00-17-04.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-26_15-54-23.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-08_23-10-46.jpg"></div>
+        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-20_21-53-24.jpg"></div>
+      </div>
+      <div class="card-content">
+        <p class="poetic-text">"No enlace de mãos, o amor floresce.<br>Cumplicidade em cada verso se tece.<br>Nossos corações, juntos, eternamente aquecem."</p>
+      </div>
+    </div>
+
+    <!-- Timers Container -->
+    <div class="timers-container fade-in">
+
+      <!-- Relationship Timer -->
+      <div class="glass-card timer-card">
+        <h3>Juntos há</h3>
+        <div id="relationship-timer" class="countdown-timer">
+          <!-- JS will populate -->
+        </div>
+        <p class="since-date">Desde 28 de Julho de 2022</p>
+      </div>
+
+      <!-- Wedding Timer -->
+      <div class="glass-card timer-card">
+        <h3 id="wedding-title">Contagem regressiva</h3>
+        <div id="wedding-timer" class="countdown-timer">
+          <!-- JS will populate -->
+        </div>
+        <p id="wedding-date-display" class="since-date">29 de Novembro de 2025</p>
+        <div id="bodas-display" class="bodas-badge" style="display:none;"></div>
+      </div>
+
+    </div>
+
+    <!-- Love Map Section -->
+    <div class="glass-card fade-in" style="max-width: 800px;">
+        <h3 class="section-title">Mapa do Nosso Amor</h3>
+        <div class="love-map-container">
+            <!-- Simple SVG Map Representation or Styled Divs -->
+            <div class="map-bg">
+                <div class="map-pin" style="top: 30%; left: 40%;" title="Onde nos conhecemos">
+                    <span class="material-icons">place</span>
+                    <span class="pin-label">O Início</span>
+                </div>
+                <div class="map-pin" style="top: 50%; left: 60%;" title="Nosso primeiro beijo">
+                    <span class="material-icons">favorite</span>
+                    <span class="pin-label">Primeiro Beijo</span>
+                </div>
+                <div class="map-pin" style="top: 70%; left: 30%;" title="Nossa futura casa">
+                    <span class="material-icons">home</span>
+                    <span class="pin-label">Futuro Lar</span>
+                </div>
+                <!-- Connecting lines could be SVG lines -->
+                <svg class="map-lines">
+                    <line x1="40%" y1="30%" x2="60%" y2="50%" />
+                    <line x1="60%" y1="50%" x2="30%" y2="70%" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="timeline-section fade-in">
+      <h2 class="section-title">Nossa Jornada</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content glass-card">
+            <h3>O Início</h3>
+            <p class="timeline-date">28 de Julho de 2022</p>
+            <p>O dia em que nossas vidas se cruzaram e tudo mudou para melhor.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content glass-card">
+            <h3>1º Ano Juntos</h3>
+            <p class="timeline-date">28 de Julho de 2023</p>
+            <p>365 dias de muito amor, aprendizado e cumplicidade.</p>
+          </div>
+        </div>
+         <div class="timeline-item left">
+          <div class="timeline-content glass-card">
+            <h3>Hoje</h3>
+            <p class="timeline-date">Cada instante</p>
+            <p>Continuamos escrevendo nossa linda história, dia após dia.</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content glass-card">
+            <h3>O Grande Dia</h3>
+            <p class="timeline-date">29 de Novembro de 2025</p>
+            <p>O começo do nosso "para sempre".</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bucket List Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Nossos Sonhos</h3>
+
+      <div class="bucket-progress-container">
+        <div class="bucket-progress-bar" id="bucketProgressBar"></div>
+        <span id="bucketProgressText">0% Realizado</span>
+      </div>
+
+      <div class="bucket-list">
+        <div class="bucket-item">
+          <input type="checkbox" id="bucket1">
+          <label for="bucket1">Viajar para a Europa</label>
+        </div>
+        <div class="bucket-item">
+          <input type="checkbox" id="bucket2">
+          <label for="bucket2">Ter nossa casa própria</label>
+        </div>
+        <div class="bucket-item">
+          <input type="checkbox" id="bucket3">
+          <label for="bucket3">Adotar um cachorro</label>
+        </div>
+        <div class="bucket-item">
+          <input type="checkbox" id="bucket4">
+          <label for="bucket4">Aprender a cozinhar algo novo juntos</label>
+        </div>
+        <div class="bucket-item">
+          <input type="checkbox" id="bucket5">
+          <label for="bucket5">Ver a aurora boreal</label>
+        </div>
+        <!-- Add more items as needed -->
+        <div class="bucket-add">
+           <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">E muitos outros sonhos para realizar ao seu lado...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Time Capsule Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Cápsula do Tempo</h3>
+      <div class="time-capsule-container">
+         <div class="lock-icon-wrapper" id="capsuleLockBtn">
+            <span class="material-icons lock-icon">lock</span>
+            <span class="material-icons unlock-icon">lock_open</span>
+         </div>
+         <p>Uma mensagem guardada para o futuro...</p>
+         <p class="capsule-date">Abrir em: 29/11/2025</p>
+         <button id="openCapsuleBtn" class="surprise-btn small-btn">Tentar Abrir</button>
+      </div>
+    </div>
+
+    <!-- Scratch Card Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Sua Surpresa de Hoje</h3>
+      <p style="margin-bottom: 20px;">Raspe para descobrir seu prêmio especial ❤️</p>
+      <div class="scratch-card-wrapper" id="scratchCardWrapper">
+        <div class="scratch-prize">
+          <h4>Parabéns!</h4>
+          <p id="scratchPrizeText">Vale um beijo!</p>
+        </div>
+        <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+      </div>
+    </div>
+
+    <!-- Love Calculator Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Calculadora do Amor</h3>
+      <div class="love-calc-container">
+        <div class="calc-inputs">
+           <input type="text" id="calcName1" class="calc-input" placeholder="Seu Nome" value="Antonio">
+           <span class="material-icons calc-heart">favorite</span>
+           <input type="text" id="calcName2" class="calc-input" placeholder="Nome Dela" value="Daniela">
+        </div>
+        <button id="calcBtn" class="surprise-btn">
+          <span class="material-icons">calculate</span> Calcular Compatibilidade
+        </button>
+        <div id="calcResult" class="calc-result"></div>
+      </div>
+    </div>
+
+    <!-- Memory Game Section -->
+    <div class="glass-card fade-in" style="max-width: 800px;">
+      <h3 class="section-title">Jogo da Memória</h3>
+      <p style="margin-bottom: 20px;">Encontre os pares dos nossos momentos</p>
+      <div class="memory-game" id="memoryGame">
+        <!-- Cards will be generated by JS -->
+      </div>
+      <button id="restartGameBtn" class="surprise-btn" style="display:none; margin-top: 20px;">
+        <span class="material-icons">refresh</span> Jogar Novamente
+      </button>
+    </div>
+
+    <!-- Love Quiz Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3 class="section-title">Quiz do Nosso Amor</h3>
+      <div class="quiz-container">
+        <div id="quiz-box">
+           <p class="quiz-question" id="quizQuestion">Carregando pergunta...</p>
+           <div class="quiz-options" id="quizOptions">
+             <!-- Options generated by JS -->
+           </div>
+        </div>
+        <div id="quizResult" class="quiz-result"></div>
+      </div>
+    </div>
+
+    <!-- Reasons Why I Love You Section -->
+    <div class="glass-card fade-in" style="max-width: 600px;">
+      <h3>Por que eu te amo?</h3>
+      <button id="reasonsBtn" class="surprise-btn reasons-btn">
+        <span class="material-icons">volunteer_activism</span> Descubra um motivo
+      </button>
+      <div id="reason-display"></div>
+    </div>
+
+    <!-- Music & Surprise Section -->
+    <div class="actions-section fade-in">
+      <div class="glass-card music-card vinyl-wrapper">
+        <div class="vinyl-record">
+            <div class="vinyl-center"></div>
+        </div>
+        <div class="music-controls">
+             <p>Nossa Trilha Sonora</p>
+             <iframe id="musicPlayer" width="100%" height="80" src="https://www.youtube-nocookie.com/embed/JYuyWrkwpok?controls=1&start=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <button id="surpriseBtn" class="surprise-btn pulse">
+        <span class="material-icons">favorite</span> Clique para uma Surpresa
+      </button>
+    </div>
+
+    <!-- Final Message -->
+    <div class="footer-section fade-in">
+      <h2 class="love-message">Eu te amo infinitamente</h2>
+    </div>
+
+  </div>
+
+  <!-- Floating Bottle -->
+  <div id="floatingBottle" class="floating-bottle" title="Mensagem na Garrafa">
+    <div class="bottle-icon">🍾</div>
+  </div>
+
+  <!-- Message in a Bottle Modal -->
+  <div id="bottleModal" class="modal">
+    <div class="modal-content bottle-content">
+      <span class="close-modal close-bottle">&times;</span>
+      <h2 class="modal-title">Mensagem do Destino</h2>
+      <p id="bottleMessage" class="modal-text"></p>
+      <div style="font-size: 3rem; margin-top: 20px;">💌</div>
+    </div>
+  </div>
+
+  <!-- Time Capsule Modal -->
+  <div id="capsuleModal" class="modal">
+    <div class="modal-content capsule-content">
+      <span class="close-modal close-capsule">&times;</span>
+      <h2 class="modal-title">Cápsula do Tempo Aberta!</h2>
+      <p class="modal-text">
+        Meu amor, se você está lendo isso, saiba que meu amor por você só cresceu desde o dia em que escrevi isso.
+        <br><br>
+        Prometo continuar te fazendo feliz, realizando nossos sonhos e construindo nossa família.
+        <br><br>
+        Você é meu passado, meu presente e meu futuro.
+      </p>
+      <div style="font-size: 4rem; margin-top: 20px;">💍</div>
+    </div>
+  </div>
+
+  <!-- Envelope Overlay -->
+  <div id="envelopeOverlay" class="envelope-overlay">
+    <div class="envelope-wrapper" id="envelopeWrapper">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="letter">
+          <span class="close-envelope-btn">&times;</span>
+          <h2>Minha Amada Daniela,</h2>
+          <p>
+            Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.<br><br>
+            Obrigado por ser quem você é e por me fazer tão feliz.<br><br>
+            Com todo meu amor,<br>Antonio.
+          </p>
+          <div style="color: #e91e63; font-size: 20px; margin-top: 10px;">❤️</div>
+        </div>
+        <div class="pocket-bottom"></div>
+        <div class="pocket-left"></div>
+        <div class="pocket-right"></div>
+        <div class="envelope-flap"></div>
+      </div>
+      <div class="click-hint">Clique para abrir</div>
+    </div>
+  </div>
+
+  <!-- Konami Code Modal -->
+  <div id="konamiModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2 class="modal-title">Você descobriu um segredo! 💖</h2>
+      <p class="modal-text">Assim como esse código secreto, meu amor por você é cheio de surpresas maravilhosas. Você desbloqueou a chave do meu coração para todo o sempre!</p>
+      <div style="font-size: 4rem; margin-top: 20px;">💑</div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
