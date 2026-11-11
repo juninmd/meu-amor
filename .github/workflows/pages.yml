@@ -1,17 +1,18 @@
 name: Deploy to GitHub Pages
 
-# Publica no branch gh-pages: o GITHUB_TOKEN consegue escrever nele,
-# ao contrário de criar o site via API (que exige admin).
 on:
   push: { branches: [master] }
   workflow_dispatch:
 
-permissions: { contents: write }
+permissions: { contents: read, pages: write, id-token: write }
 concurrency: { group: pages, cancel-in-progress: false }
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -20,9 +21,10 @@ jobs:
         run: if [ -f package-lock.json ]; then npm ci && npm test; else echo "Sem testes JS"; fi
       - name: Montar site
         run: ./.github/scripts/build-site.sh _site
-      - uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: _site
-          branch: gh-pages
-          # Mantém os previews dos PRs publicados pelo workflow preview.yml.
-          clean-exclude: pr-preview/
+      # O site já foi criado em Settings → Pages (fonte: GitHub Actions);
+      # sem "enablement" o token não precisa de permissão de admin.
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: _site }
+      - id: deployment
+        uses: actions/deploy-pages@v4
