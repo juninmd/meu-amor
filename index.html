@@ -1,362 +1,250 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nosso Amor</title>
-
-  <!-- Fonts -->
+  <meta name="description" content="Antonio &amp; Daniela: um céu só nosso.">
+  <meta name="theme-color" content="#0e0b1a">
+  <script>try{var t=JSON.parse(localStorage.getItem('theme'));if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-  <!-- Libraries -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,0..100;1,9..144,300..800,0..100&amp;family=Figtree:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/playground.css">
 </head>
-
 <body>
-  <!-- Intro Overlay -->
-  <div id="introOverlay" class="intro-overlay">
-    <div class="intro-content">
-      <h1>Para Daniela</h1>
-      <button id="enterBtn" class="surprise-btn">
-        <span class="material-icons">favorite</span> Entrar
-      </button>
-    </div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gradRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--gold)"/><stop offset="1" stop-color="var(--rose)"/></linearGradient></defs>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.6 1.6.7-1.6.7-.7 1.6-.7-1.6-1.6-.7 1.6-.7z"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2.5"/><path d="M7 3h11a3 3 0 0 1 3 3v11"/><path d="M3 16l4-4 4 4 2.5-2.5L17 17"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.8"/></symbol>
+  <symbol id="i-dice" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="9" cy="9" r=".6"/><circle cx="15" cy="15" r=".6"/><circle cx="15" cy="9" r=".6"/><circle cx="9" cy="15" r=".6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5l-1.3-1.2C5.5 14.6 2.5 11.8 2.5 8.3 2.5 5.6 4.6 3.5 7.3 3.5c1.6 0 3.1.8 4.7 2.5 1.6-1.7 3.1-2.5 4.7-2.5 2.7 0 4.8 2.1 4.8 4.8 0 3.5-3 6.3-8.2 11z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6L6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+</svg>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="mono-mark" href="#inicio" aria-label="Início">A<em>&amp;</em>D</a>
+  <div class="top-actions">
+    <button class="chip theme-btn" id="themeBtn" aria-label="Alternar entre noite e amanhecer"><svg class="i moon"><use href="#i-moon"/></svg><svg class="i sun"><use href="#i-sun"/></svg></button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="inicio" class="hero wrap">
+  <div class="eyebrow">Nº 28.07.2022 · Casados 29.11.2025 · Um céu só nosso</div>
+  <div class="typed" id="typed" aria-label="Olá, amor da minha vida…"></div>
+  <h1 class="names" aria-label="Antonio e Daniela"><span class="ln" data-split="Antonio"></span><span class="ln"><span class="amp">&amp;</span><span data-split="Daniela"></span></span></h1>
+  <p class="lede" style="margin-top:0">Eternizando nossos momentos. Cada estrela deste céu é um dia que vivemos juntos.</p>
+  <div class="hero-row">
+    <button class="btn" id="ignite"><svg class="i"><use href="#i-spark"/></svg>Acender nosso céu</button>
+    <a class="btn ghost" href="#carta" style="text-decoration:none"><svg class="i"><use href="#i-mail"/></svg>Ler a carta</a>
   </div>
 
-  <div class="bg_petals"></div>
-  <div class="bg_hearts"></div>
-  <canvas id="starfield"></canvas>
-
-  <div class="container">
-
-    <!-- Title Section -->
-    <div class="header-section fade-in">
-      <div id="greeting-typewriter" class="typewriter-text"></div>
-      <h1 class="main-title">Antonio & Daniela</h1>
-      <p class="subtitle">Eternizando nossos momentos</p>
-    </div>
-
-    <!-- Main Card with Carousel -->
-    <div class="glass-card main-card fade-in">
-      <div class="slick-carousel">
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-01_23-10-48.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-05-07_00-34-35.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-11_21-57-30.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-12_20-20-39.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-21_22-32-40.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-24_00-17-04.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-06-26_15-54-23.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-08_23-10-46.jpg"></div>
-        <div><img class="carousel-image" alt="Foto" src="photo_2023-07-20_21-53-24.jpg"></div>
+  <div class="counters">
+    <article class="panel">
+      <div class="eyebrow">Juntos há</div>
+      <div class="big"><b id="relDays">—</b><span>dias</span></div>
+      <div class="units" id="relUnits"></div>
+      <div class="meta"><span>Desde <strong>28 de julho de 2022</strong></span><span id="beats">≈ — batimentos lado a lado</span></div>
+    </article>
+    <article class="panel">
+      <div class="eyebrow" id="wedTitle">Casados há</div>
+      <div class="big"><b id="wedDays">—</b><span>dias</span></div>
+      <div class="units" id="wedUnits"></div>
+      <div class="bodas">
+        <svg class="ring" viewBox="0 0 80 80" aria-hidden="true"><circle class="track" cx="40" cy="40" r="34"/><circle class="val" id="bodasRing" cx="40" cy="40" r="34" stroke-dasharray="213.6" stroke-dashoffset="213.6"/></svg>
+        <p><span class="badge" id="bodasBadge">Próximas bodas</span><br><span id="bodasTxt">—</span></p>
       </div>
-      <div class="card-content">
-        <p class="poetic-text">"No enlace de mãos, o amor floresce.<br>Cumplicidade em cada verso se tece.<br>Nossos corações, juntos, eternamente aquecem."</p>
-      </div>
-    </div>
-
-    <!-- Timers Container -->
-    <div class="timers-container fade-in">
-
-      <!-- Relationship Timer -->
-      <div class="glass-card timer-card">
-        <h3>Juntos há</h3>
-        <div id="relationship-timer" class="countdown-timer">
-          <!-- JS will populate -->
-        </div>
-        <p class="since-date">Desde 28 de Julho de 2022</p>
-      </div>
-
-      <!-- Wedding Timer -->
-      <div class="glass-card timer-card">
-        <h3 id="wedding-title">Contagem regressiva</h3>
-        <div id="wedding-timer" class="countdown-timer">
-          <!-- JS will populate -->
-        </div>
-        <p id="wedding-date-display" class="since-date">29 de Novembro de 2025</p>
-        <div id="bodas-display" class="bodas-badge" style="display:none;"></div>
-      </div>
-
-    </div>
-
-    <!-- Love Map Section -->
-    <div class="glass-card fade-in" style="max-width: 800px;">
-        <h3 class="section-title">Mapa do Nosso Amor</h3>
-        <div class="love-map-container">
-            <!-- Simple SVG Map Representation or Styled Divs -->
-            <div class="map-bg">
-                <div class="map-pin" style="top: 30%; left: 40%;" title="Onde nos conhecemos">
-                    <span class="material-icons">place</span>
-                    <span class="pin-label">O Início</span>
-                </div>
-                <div class="map-pin" style="top: 50%; left: 60%;" title="Nosso primeiro beijo">
-                    <span class="material-icons">favorite</span>
-                    <span class="pin-label">Primeiro Beijo</span>
-                </div>
-                <div class="map-pin" style="top: 70%; left: 30%;" title="Nossa futura casa">
-                    <span class="material-icons">home</span>
-                    <span class="pin-label">Futuro Lar</span>
-                </div>
-                <!-- Connecting lines could be SVG lines -->
-                <svg class="map-lines">
-                    <line x1="40%" y1="30%" x2="60%" y2="50%" />
-                    <line x1="60%" y1="50%" x2="30%" y2="70%" />
-                </svg>
-            </div>
-        </div>
-    </div>
-
-    <!-- Timeline Section -->
-    <div class="timeline-section fade-in">
-      <h2 class="section-title">Nossa Jornada</h2>
-      <div class="timeline">
-        <div class="timeline-item left">
-          <div class="timeline-content glass-card">
-            <h3>O Início</h3>
-            <p class="timeline-date">28 de Julho de 2022</p>
-            <p>O dia em que nossas vidas se cruzaram e tudo mudou para melhor.</p>
-          </div>
-        </div>
-        <div class="timeline-item right">
-          <div class="timeline-content glass-card">
-            <h3>1º Ano Juntos</h3>
-            <p class="timeline-date">28 de Julho de 2023</p>
-            <p>365 dias de muito amor, aprendizado e cumplicidade.</p>
-          </div>
-        </div>
-         <div class="timeline-item left">
-          <div class="timeline-content glass-card">
-            <h3>Hoje</h3>
-            <p class="timeline-date">Cada instante</p>
-            <p>Continuamos escrevendo nossa linda história, dia após dia.</p>
-          </div>
-        </div>
-        <div class="timeline-item right">
-          <div class="timeline-content glass-card">
-            <h3>O Grande Dia</h3>
-            <p class="timeline-date">29 de Novembro de 2025</p>
-            <p>O começo do nosso "para sempre".</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bucket List Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3 class="section-title">Nossos Sonhos</h3>
-
-      <div class="bucket-progress-container">
-        <div class="bucket-progress-bar" id="bucketProgressBar"></div>
-        <span id="bucketProgressText">0% Realizado</span>
-      </div>
-
-      <div class="bucket-list">
-        <div class="bucket-item">
-          <input type="checkbox" id="bucket1">
-          <label for="bucket1">Viajar para a Europa</label>
-        </div>
-        <div class="bucket-item">
-          <input type="checkbox" id="bucket2">
-          <label for="bucket2">Ter nossa casa própria</label>
-        </div>
-        <div class="bucket-item">
-          <input type="checkbox" id="bucket3">
-          <label for="bucket3">Adotar um cachorro</label>
-        </div>
-        <div class="bucket-item">
-          <input type="checkbox" id="bucket4">
-          <label for="bucket4">Aprender a cozinhar algo novo juntos</label>
-        </div>
-        <div class="bucket-item">
-          <input type="checkbox" id="bucket5">
-          <label for="bucket5">Ver a aurora boreal</label>
-        </div>
-        <!-- Add more items as needed -->
-        <div class="bucket-add">
-           <p style="font-size: 0.9rem; margin-top: 15px; opacity: 0.8;">E muitos outros sonhos para realizar ao seu lado...</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Time Capsule Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3 class="section-title">Cápsula do Tempo</h3>
-      <div class="time-capsule-container">
-         <div class="lock-icon-wrapper" id="capsuleLockBtn">
-            <span class="material-icons lock-icon">lock</span>
-            <span class="material-icons unlock-icon">lock_open</span>
-         </div>
-         <p>Uma mensagem guardada para o futuro...</p>
-         <p class="capsule-date">Abrir em: 29/11/2025</p>
-         <button id="openCapsuleBtn" class="surprise-btn small-btn">Tentar Abrir</button>
-      </div>
-    </div>
-
-    <!-- Scratch Card Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3 class="section-title">Sua Surpresa de Hoje</h3>
-      <p style="margin-bottom: 20px;">Raspe para descobrir seu prêmio especial ❤️</p>
-      <div class="scratch-card-wrapper" id="scratchCardWrapper">
-        <div class="scratch-prize">
-          <h4>Parabéns!</h4>
-          <p id="scratchPrizeText">Vale um beijo!</p>
-        </div>
-        <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
-      </div>
-    </div>
-
-    <!-- Love Calculator Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3 class="section-title">Calculadora do Amor</h3>
-      <div class="love-calc-container">
-        <div class="calc-inputs">
-           <input type="text" id="calcName1" class="calc-input" placeholder="Seu Nome" value="Antonio">
-           <span class="material-icons calc-heart">favorite</span>
-           <input type="text" id="calcName2" class="calc-input" placeholder="Nome Dela" value="Daniela">
-        </div>
-        <button id="calcBtn" class="surprise-btn">
-          <span class="material-icons">calculate</span> Calcular Compatibilidade
-        </button>
-        <div id="calcResult" class="calc-result"></div>
-      </div>
-    </div>
-
-    <!-- Memory Game Section -->
-    <div class="glass-card fade-in" style="max-width: 800px;">
-      <h3 class="section-title">Jogo da Memória</h3>
-      <p style="margin-bottom: 20px;">Encontre os pares dos nossos momentos</p>
-      <div class="memory-game" id="memoryGame">
-        <!-- Cards will be generated by JS -->
-      </div>
-      <button id="restartGameBtn" class="surprise-btn" style="display:none; margin-top: 20px;">
-        <span class="material-icons">refresh</span> Jogar Novamente
-      </button>
-    </div>
-
-    <!-- Love Quiz Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3 class="section-title">Quiz do Nosso Amor</h3>
-      <div class="quiz-container">
-        <div id="quiz-box">
-           <p class="quiz-question" id="quizQuestion">Carregando pergunta...</p>
-           <div class="quiz-options" id="quizOptions">
-             <!-- Options generated by JS -->
-           </div>
-        </div>
-        <div id="quizResult" class="quiz-result"></div>
-      </div>
-    </div>
-
-    <!-- Reasons Why I Love You Section -->
-    <div class="glass-card fade-in" style="max-width: 600px;">
-      <h3>Por que eu te amo?</h3>
-      <button id="reasonsBtn" class="surprise-btn reasons-btn">
-        <span class="material-icons">volunteer_activism</span> Descubra um motivo
-      </button>
-      <div id="reason-display"></div>
-    </div>
-
-    <!-- Music & Surprise Section -->
-    <div class="actions-section fade-in">
-      <div class="glass-card music-card vinyl-wrapper">
-        <div class="vinyl-record">
-            <div class="vinyl-center"></div>
-        </div>
-        <div class="music-controls">
-             <p>Nossa Trilha Sonora</p>
-             <iframe id="musicPlayer" width="100%" height="80" src="https://www.youtube-nocookie.com/embed/JYuyWrkwpok?controls=1&start=0"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-        </div>
-      </div>
-
-      <button id="surpriseBtn" class="surprise-btn pulse">
-        <span class="material-icons">favorite</span> Clique para uma Surpresa
-      </button>
-    </div>
-
-    <!-- Final Message -->
-    <div class="footer-section fade-in">
-      <h2 class="love-message">Eu te amo infinitamente</h2>
-    </div>
-
+    </article>
   </div>
+  <a class="scroll-cue" href="#momentos" aria-label="Descer para Momentos"><svg class="i"><use href="#i-down"/></svg></a>
+</section>
 
-  <!-- Floating Bottle -->
-  <div id="floatingBottle" class="floating-bottle" title="Mensagem na Garrafa">
-    <div class="bottle-icon">🍾</div>
-  </div>
-
-  <!-- Message in a Bottle Modal -->
-  <div id="bottleModal" class="modal">
-    <div class="modal-content bottle-content">
-      <span class="close-modal close-bottle">&times;</span>
-      <h2 class="modal-title">Mensagem do Destino</h2>
-      <p id="bottleMessage" class="modal-text"></p>
-      <div style="font-size: 3rem; margin-top: 20px;">💌</div>
+<!-- MOMENTOS -->
+<section id="momentos" class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Capítulo I · 9 fotografias</div><h2>Nossos <em>momentos</em></h2></div>
+  <div class="moments">
+    <div>
+      <div class="stack" id="stack" aria-roledescription="pilha de fotos"></div>
+      <div class="stack-ctl">
+        <button class="round" id="prevPh" aria-label="Foto anterior"><svg class="i"><use href="#i-left"/></svg></button>
+        <span class="count" id="phCount">1 / 9</span>
+        <button class="round" id="nextPh" aria-label="Próxima foto"><svg class="i"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="poem">“No enlace de mãos, o amor <span>floresce</span>.<br>Cumplicidade em cada verso se tece.<br>Nossos corações, juntos, eternamente aquecem.”</p>
+      <div class="film" id="film"></div>
+      <div class="hint">Arraste a foto para o lado · toque para ampliar</div>
     </div>
   </div>
+</section>
 
-  <!-- Time Capsule Modal -->
-  <div id="capsuleModal" class="modal">
-    <div class="modal-content capsule-content">
-      <span class="close-modal close-capsule">&times;</span>
-      <h2 class="modal-title">Cápsula do Tempo Aberta!</h2>
-      <p class="modal-text">
-        Meu amor, se você está lendo isso, saiba que meu amor por você só cresceu desde o dia em que escrevi isso.
-        <br><br>
-        Prometo continuar te fazendo feliz, realizando nossos sonhos e construindo nossa família.
-        <br><br>
-        Você é meu passado, meu presente e meu futuro.
-      </p>
-      <div style="font-size: 4rem; margin-top: 20px;">💍</div>
+<!-- JORNADA -->
+<section id="jornada" class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Capítulo II · Constelação</div><h2>Nossa <em>jornada</em></h2></div>
+  <div class="journey">
+    <ol class="tl">
+      <li><div class="eyebrow">28 · 07 · 2022</div><h3>O início</h3><p>O dia em que nossas vidas se cruzaram e tudo mudou para melhor.</p></li>
+      <li><div class="eyebrow">28 · 07 · 2023</div><h3>1º ano juntos</h3><p>365 dias de muito amor, aprendizado e cumplicidade.</p></li>
+      <li><div class="eyebrow">29 · 11 · 2025</div><h3>O grande dia</h3><p>O começo do nosso “para sempre”.</p></li>
+      <li><div class="eyebrow" id="todayLbl">Hoje · cada instante</div><h3>Hoje</h3><p>Continuamos escrevendo nossa linda história, dia após dia.</p></li>
+      <li class="next"><div class="eyebrow" id="nextMsDate">29 nov 2026</div><h3 id="nextMsTitle">Bodas de Papel</h3><p id="nextMs">Nosso primeiro aniversário de casados.</p></li>
+    </ol>
+    <div class="panel chart reveal">
+      <div class="eyebrow" style="margin-bottom:6px">Mapa do nosso amor · carta celeste</div>
+      <svg viewBox="0 0 400 300" role="group" aria-label="Mapa com três lugares especiais">
+        <circle class="grid" cx="200" cy="150" r="130"/><circle class="grid" cx="200" cy="150" r="88"/><circle class="grid" cx="200" cy="150" r="44"/>
+        <path class="grid" d="M200 10v280M50 150h300M108 58l184 184M292 58L108 242"/>
+        <text class="lbl" x="206" y="22">N</text><text class="lbl" x="336" y="146">L</text><text class="lbl" x="206" y="290">S</text><text class="lbl" x="56" y="146">O</text>
+        <path class="path" d="M160 90 Q 230 70 240 150 T 120 210"/>
+        <g class="pin" tabindex="0" role="button" data-k="0" aria-label="O início"><circle class="halo" cx="160" cy="90" r="12"/><circle class="core" cx="160" cy="90" r="5"/><text x="92" y="76">O início</text></g>
+        <g class="pin" tabindex="0" role="button" data-k="1" aria-label="Primeiro beijo"><circle class="halo" cx="240" cy="150" r="12"/><circle class="core" cx="240" cy="150" r="5"/><text x="252" y="140">1º beijo</text></g>
+        <g class="pin" tabindex="0" role="button" data-k="2" aria-label="Futuro lar"><circle class="halo" cx="120" cy="210" r="12"/><circle class="core" cx="120" cy="210" r="5"/><text x="60" y="236">Futuro lar</text></g>
+      </svg>
+      <div class="pin-info" id="pinInfo" aria-live="polite"><b>Toque numa estrela</b><p>Cada ponto guarda um lugar que só a gente entende.</p></div>
     </div>
   </div>
+</section>
 
-  <!-- Envelope Overlay -->
-  <div id="envelopeOverlay" class="envelope-overlay">
-    <div class="envelope-wrapper" id="envelopeWrapper">
-      <div class="envelope">
-        <div class="envelope-back"></div>
-        <div class="letter">
-          <span class="close-envelope-btn">&times;</span>
-          <h2>Minha Amada Daniela,</h2>
-          <p>
-            Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.<br><br>
-            Obrigado por ser quem você é e por me fazer tão feliz.<br><br>
-            Com todo meu amor,<br>Antonio.
-          </p>
-          <div style="color: #e91e63; font-size: 20px; margin-top: 10px;">❤️</div>
-        </div>
-        <div class="pocket-bottom"></div>
-        <div class="pocket-left"></div>
-        <div class="pocket-right"></div>
-        <div class="envelope-flap"></div>
-      </div>
-      <div class="click-hint">Clique para abrir</div>
+<!-- BRINCAR -->
+<section id="brincar" class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Capítulo III · Playground</div><h2>Vamos <em>brincar</em>?</h2><p class="lede">Oito pequenas surpresas. Toque num card para abrir.</p></div>
+  <div class="bento">
+    <button class="tile t-mem" data-open="dlg-mem"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <div class="mini-mem" aria-hidden="true"><i style="--k:0"><b style="background-image:url(photo_2023-05-01_23-10-48.jpg)"></b></i><i style="--k:1"><b style="background-image:url(photo_2023-05-07_00-34-35.jpg)"></b></i><i style="--k:2"><b style="background-image:url(photo_2023-06-11_21-57-30.jpg)"></b></i><i style="--k:3"><b style="background-image:url(photo_2023-05-01_23-10-48.jpg)"></b></i><i style="--k:4"><b style="background-image:url(photo_2023-05-07_00-34-35.jpg)"></b></i><i style="--k:5"><b style="background-image:url(photo_2023-06-11_21-57-30.jpg)"></b></i></div>
+      <div><h3>Jogo da memória</h3><p>Encontre os pares dos nossos momentos. 12 cartas, quantas jogadas?</p></div></button>
+    <button class="tile t-scr" data-open="dlg-scr"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <div class="foil" aria-hidden="true">✦ raspe aqui ✦</div>
+      <div><h3>Sua surpresa de hoje</h3><p>Raspe a folha dourada e descubra seu prêmio.</p></div></button>
+    <button class="tile" data-open="dlg-quiz"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <span class="big-glyph" aria-hidden="true">?</span><div><h3>Quiz</h3><p>4 perguntas sobre nós.</p></div></button>
+    <button class="tile" data-open="dlg-calc"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <span class="big-glyph" aria-hidden="true">∞%</span><div><h3>Calculadora</h3><p>Compatibilidade do amor.</p></div></button>
+    <button class="tile t-why" data-open="dlg-why"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <div class="deck-prev" aria-hidden="true"><span style="--k:-1"></span><span style="--k:1"></span><span style="--k:0">“Pelo seu sorriso que ilumina meu dia.”</span></div>
+      <div><h3>Por que eu te amo?</h3><p>Um baralho com 20 motivos. Tire uma carta.</p></div></button>
+    <button class="tile" data-open="dlg-cap"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <svg class="lock-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path class="sh" d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      <div><h3>Cápsula do tempo</h3><p id="capTileTxt">Uma mensagem para o futuro.</p></div></button>
+    <button class="tile" data-open="dlg-bottle"><span class="go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      <span class="bottle-e" aria-hidden="true">🍾</span><div><h3>Garrafa</h3><p>Uma mensagem do destino.</p></div></button>
+    <div class="tile t-surp">
+      <button class="heart-btn" id="surprise" aria-label="Clique para uma surpresa"><svg class="i"><use href="#i-heart"/></svg></button>
+      <div><h3>Clique para uma surpresa</h3><p>Fogos de confete e uma chuva de pétalas só para você.</p></div>
     </div>
   </div>
+</section>
 
-  <!-- Konami Code Modal -->
-  <div id="konamiModal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h2 class="modal-title">Você descobriu um segredo! 💖</h2>
-      <p class="modal-text">Assim como esse código secreto, meu amor por você é cheio de surpresas maravilhosas. Você desbloqueou a chave do meu coração para todo o sempre!</p>
-      <div style="font-size: 4rem; margin-top: 20px;">💑</div>
+<!-- SONHOS -->
+<section id="sonhos" class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Capítulo IV · Lista de desejos</div><h2>Nossos <em>sonhos</em></h2></div>
+  <div class="dreams">
+    <div class="dial">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="52"/><circle class="val" id="dial" cx="60" cy="60" r="52" stroke-dasharray="326.7" stroke-dashoffset="326.7"/></svg>
+      <div class="dial-txt"><b id="dialPct">0%</b><span>realizado</span></div>
+    </div>
+    <div>
+      <ul class="dlist" id="dlist"></ul>
+      <form class="add" id="addForm"><input id="addInput" placeholder="E muitos outros sonhos ao seu lado…" aria-label="Novo sonho" maxlength="60"><button class="round" aria-label="Adicionar sonho"><svg class="i"><use href="#i-plus"/></svg></button></form>
     </div>
   </div>
+</section>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-  <script src="script.js"></script>
+<!-- CARTA -->
+<section id="carta" class="wrap letter-sec">
+  <div class="sec-head reveal" style="justify-items:center"><div class="eyebrow">Capítulo V · Para Daniela</div><h2>Uma <em>carta</em> pra você</h2></div>
+  <button class="env" id="env" aria-label="Abrir a carta" aria-expanded="false">
+    <span class="back"></span>
+    <span class="paper"><h3>Minha amada Daniela,</h3><p>Cada dia ao seu lado é um presente. Preparei este cantinho para te lembrar o quanto você é especial para mim.</p><p>Obrigado por ser quem você é e por me fazer tão feliz.</p><p>Com todo meu amor,<br>Antonio.</p></span>
+    <span class="front"></span><span class="flap"></span>
+    <span class="seal"><svg class="i"><use href="#i-heart"/></svg></span>
+  </button>
+  <div class="hint env-hint" id="envHint">Toque no envelope para abrir</div>
+  <div class="finale">
+    <h2>Eu te amo <button class="inf" id="inf" aria-label="Infinito"><svg viewBox="0 0 60 30" aria-hidden="true"><path d="M30 15c-6-8-12-11-17-11a11 11 0 0 0 0 22c5 0 11-3 17-11s12-11 17-11a11 11 0 0 1 0 22c-5 0-11-3-17-11z"/></svg></button><em>infinitamente</em></h2>
+    <div class="sign">Antonio &amp; Daniela · desde sempre, para sempre</div>
+  </div>
+</section>
+<div style="height:90px"></div>
+</main>
+
+<button class="bottle" data-open="dlg-bottle" aria-label="Mensagem na garrafa">🍾</button>
+
+<nav class="dock" aria-label="Seções">
+  <a href="#inicio" class="on"><svg class="i"><use href="#i-spark"/></svg><span>Nós</span></a>
+  <a href="#momentos"><svg class="i"><use href="#i-photo"/></svg><span>Momentos</span></a>
+  <a href="#jornada"><svg class="i"><use href="#i-route"/></svg><span>Jornada</span></a>
+  <a href="#brincar"><svg class="i"><use href="#i-dice"/></svg><span>Brincar</span></a>
+  <a href="#sonhos"><svg class="i"><use href="#i-star"/></svg><span>Sonhos</span></a>
+  <a href="#carta"><svg class="i"><use href="#i-mail"/></svg><span>Carta</span></a>
+  <i class="sep"></i>
+  <button class="music" id="music" aria-label="Nossa trilha sonora" aria-expanded="false"><span class="disc"></span></button>
+</nav>
+<div class="pop" id="musicPop" aria-hidden="true">
+  <div class="eyebrow">Tocando agora</div>
+  <div style="font:italic 1.4rem var(--f-display)">Nossa trilha sonora</div>
+  <iframe id="musicPlayer" src="https://www.youtube-nocookie.com/embed/JYuyWrkwpok?controls=1&amp;start=0" title="Nossa trilha sonora" allow="autoplay; encrypted-media; picture-in-picture" loading="lazy"></iframe>
+</div>
+
+<!-- SHEETS -->
+<dialog id="dlg-mem" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow">Playground</div><h3>Jogo da memória</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="mem-grid" id="memGrid"></div>
+  <div class="stats"><span id="memMoves">0 jogadas</span><span id="memPairs">0 / 6 pares</span></div>
+  <button class="btn ghost" id="memAgain" style="margin-top:14px;width:100%;justify-content:center">Jogar novamente</button></div></dialog>
+
+<dialog id="dlg-scr" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow">Raspe com o dedo</div><h3>Sua surpresa de hoje</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="scratch" id="scratch"><div><h4>Parabéns!</h4><p id="prize">Vale um beijo!</p></div><canvas id="scrCv"></canvas></div>
+  <p class="hint" style="text-align:center">Raspe para descobrir seu prêmio especial ❤</p></div></dialog>
+
+<dialog id="dlg-quiz" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow">Quanto você me conhece?</div><h3>Quiz do nosso amor</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div id="quiz"></div></div></dialog>
+
+<dialog id="dlg-calc" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow">Ciência exata</div><h3>Calculadora do amor</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <form id="calcForm"><div class="calc-row"><input id="n1" value="Antonio" aria-label="Seu nome"><span class="calc-heart"><svg class="i"><use href="#i-heart"/></svg></span><input id="n2" value="Daniela" aria-label="Nome dela"></div>
+  <p class="err" id="calcErr"></p>
+  <button class="btn" style="width:100%;justify-content:center">Calcular compatibilidade</button></form>
+  <div class="calc-out" id="calcOut" aria-live="polite"></div></div></dialog>
+
+<dialog id="dlg-why" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow" id="whyN">Motivo 1 de 20</div><h3>Por que eu te amo?</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="why-card" id="whyCard"><q id="whyTxt"></q><div class="eyebrow">— Antonio</div></div>
+  <button class="btn" id="whyNext" style="margin-top:16px;width:100%;justify-content:center"><svg class="i"><use href="#i-heart"/></svg>Descubra outro motivo</button></div></dialog>
+
+<dialog id="dlg-cap" class="bottom"><div class="sheet cap" id="cap"><div class="sh-head"><div style="text-align:left"><div class="eyebrow">Abrir em 29.11.2025</div><h3>Cápsula do tempo</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <svg class="lock-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path class="sh" d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+  <p id="capStatus" style="margin:0;color:var(--muted)">Uma mensagem guardada para o futuro…</p>
+  <button class="btn" id="capBtn" style="margin-top:16px">Tentar abrir</button>
+  <div class="cap-msg"><div><p>Meu amor, se você está lendo isso, saiba que meu amor por você só cresceu desde o dia em que escrevi isso.</p><p>Prometo continuar te fazendo feliz, realizando nossos sonhos e construindo nossa família.</p><p>Você é meu passado, meu presente e meu futuro. 💍</p></div></div></div></dialog>
+
+<dialog id="dlg-bottle" class="bottom"><div class="sheet"><div class="sh-head"><div><div class="eyebrow">Achada na areia</div><h3>Mensagem do destino</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <div class="scroll-paper" id="bottlePaper"><p id="bottleMsg"></p><div style="font-size:2.4rem;margin-top:14px">💌</div></div>
+  <button class="btn ghost" id="bottleNext" style="margin-top:14px;width:100%;justify-content:center">Jogar a garrafa de novo</button></div></dialog>
+
+<dialog id="dlg-konami"><div class="sheet" style="text-align:center"><div class="sh-head"><div style="text-align:left"><div class="eyebrow">Easter egg</div><h3>Você descobriu um segredo!</h3></div><button class="x" data-close aria-label="Fechar"><svg class="i"><use href="#i-x"/></svg></button></div>
+  <p style="font:italic 300 1.25rem/1.5 var(--f-display);margin:0">Assim como esse código secreto, meu amor por você é cheio de surpresas maravilhosas. Você desbloqueou a chave do meu coração para todo o sempre!</p><div style="font-size:3.4rem;margin-top:16px">💑</div></div></dialog>
+
+<dialog id="dlg-lb" class="lightbox"><div class="sheet"><img id="lbImg" alt=""><div class="lb-bar"><button class="round" id="lbPrev" aria-label="Anterior"><svg class="i"><use href="#i-left"/></svg></button><span class="count" id="lbCap"></span><button class="round" id="lbNext" aria-label="Próxima"><svg class="i"><use href="#i-right"/></svg></button></div>
+  <button class="x" data-close aria-label="Fechar" style="position:absolute;top:22px;right:22px;background:var(--bg-2)"><svg class="i"><use href="#i-x"/></svg></button></div></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,100 @@
+/* Layout: céu noturno vivo em canvas fixo; seções empilhadas numa coluna de 1120px; dock flutuante embaixo; jogos abrem em "sheets". Dark-first. */
+:root{
+  --bg:#0e0b1a; --bg-2:#181230; --surface:rgba(255,236,242,.05); --surface-2:rgba(255,236,242,.1);
+  --line:rgba(255,226,236,.14); --fg:#f7eef1; --muted:#b6a8bf; --rose:#ff7d9d; --rose-2:#ff4f7e;
+  --gold:#f2c28a; --violet:#7a5cff; --star:#fff4e8; --ok:#7ee0b0; --bad:#ff9a9a; --on-rose:#1a0b14;
+  --shadow:0 30px 80px -30px rgba(255,79,126,.35);
+  --f-display:"Fraunces","Iowan Old Style",Georgia,serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1); --spring:cubic-bezier(.34,1.56,.64,1);
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#fbf0ec; --bg-2:#fff8f5; --surface:rgba(120,30,70,.04); --surface-2:rgba(120,30,70,.08);
+  --line:rgba(90,20,60,.14); --fg:#2b1530; --muted:#7a6380; --rose:#d63a69; --rose-2:#bb204d;
+  --gold:#a8661f; --violet:#7a5cff; --star:#d63a69; --ok:#1f8a5a; --bad:#c03434; --on-rose:#fff;
+  --shadow:0 30px 70px -35px rgba(187,32,77,.35); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#fbf0ec; --bg-2:#fff8f5; --surface:rgba(120,30,70,.04); --surface-2:rgba(120,30,70,.08);
+  --line:rgba(90,20,60,.14); --fg:#2b1530; --muted:#7a6380; --rose:#d63a69; --rose-2:#bb204d;
+  --gold:#a8661f; --violet:#7a5cff; --star:#d63a69; --ok:#1f8a5a; --bad:#c03434; --on-rose:#fff;
+  --shadow:0 30px 70px -35px rgba(187,32,77,.35); color-scheme:light}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{background:var(--bg);color:var(--fg);font:400 1rem/1.6 var(--f-body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:8px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* atmosphere */
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.aurora{position:fixed;inset:-25%;z-index:0;pointer-events:none;filter:blur(30px);opacity:.9;
+  background:radial-gradient(38% 30% at 18% 12%,color-mix(in oklab,var(--rose) 24%,transparent),transparent 70%),
+  radial-gradient(30% 28% at 86% 28%,color-mix(in oklab,var(--gold) 16%,transparent),transparent 70%),
+  radial-gradient(45% 35% at 50% 95%,color-mix(in oklab,var(--violet) 20%,transparent),transparent 70%);
+  animation:drift 28s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate3d(4%,-3%,0) rotate(6deg) scale(1.08)}}
+main{position:relative;z-index:1}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.top{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 12px);left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+.top>*{pointer-events:auto}
+.mono-mark{font:italic 600 1.15rem var(--f-display);letter-spacing:.02em;padding:8px 14px;border-radius:999px;background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);text-decoration:none;color:var(--fg)}
+.mono-mark em{color:var(--rose)}
+.top-actions{display:flex;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);font:500 .78rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;transition:transform .3s var(--spring),background .3s}
+.chip:hover{transform:translateY(-2px);background:var(--surface-2)}
+.chip svg.i{width:16px;height:16px}
+.theme-btn{width:40px;height:40px;padding:0;justify-content:center}
+.theme-btn .sun{display:none}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .theme-btn .sun{display:block}:root:not([data-theme="dark"]) .theme-btn .moon{display:none}}
+:root[data-theme="light"] .theme-btn .sun{display:block}:root[data-theme="light"] .theme-btn .moon{display:none}
+
+/* type */
+.eyebrow{font:500 .72rem/1.4 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.02;margin:0;text-wrap:balance;font-variation-settings:"SOFT" 100}
+h2{font-size:clamp(2.2rem,5.4vw,3.8rem);letter-spacing:-.02em}
+h2 em,h1 em{font-style:italic;color:var(--rose)}
+.lede{color:var(--muted);max-width:52ch;margin:14px 0 0}
+section{padding-block:clamp(72px,11vw,128px)}
+.sec-head{display:grid;gap:10px;margin-bottom:40px}
+@supports (animation-timeline:view()){
+  .reveal{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 40%}
+  @keyframes rise{from{opacity:.15;transform:translateY(40px)}}
+}
+
+/* DOCK */
+.dock{position:fixed;z-index:50;left:50%;translate:-50% 0;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;background:color-mix(in oklab,var(--bg-2) 72%,transparent);border:1px solid var(--line);backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);box-shadow:0 20px 50px -20px rgba(0,0,0,.5);max-width:calc(100vw - 24px)}
+.dock a,.dock button{display:flex;align-items:center;height:44px;padding:0 12px;border-radius:999px;color:var(--muted);text-decoration:none;border:0;background:none;transition:background .35s var(--ease),color .3s}
+.dock a span{font:600 .82rem var(--f-body);max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .45s var(--ease)}
+.dock a.on{background:var(--rose);color:var(--on-rose)}
+.dock a.on span{max-width:90px;margin-left:8px}
+.dock a:hover:not(.on){color:var(--fg);background:var(--surface-2)}
+.dock .sep{width:1px;height:24px;background:var(--line);margin:0 4px}
+.disc{width:30px;height:30px;border-radius:50%;background:repeating-radial-gradient(circle,#1b1420 0 2px,#2c2232 2px 3px);position:relative;flex:none}
+.disc::after{content:"";position:absolute;inset:35%;border-radius:50%;background:var(--rose)}
+.music.playing .disc{animation:spin 2.4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pop{position:fixed;z-index:55;bottom:calc(env(safe-area-inset-bottom,0px) + 76px);left:50%;translate:-50% 0;width:min(320px,calc(100vw - 32px));padding:16px;border-radius:22px;background:var(--bg-2);border:1px solid var(--line);box-shadow:0 30px 60px -20px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,transform .4s var(--spring),visibility .3s}
+.pop.open{opacity:1;visibility:visible;transform:none}
+.pop iframe{width:100%;height:80px;border:0;border-radius:12px;margin-top:10px;display:block}
+.pop a{color:var(--rose);font-weight:600}
+.pop .eq{display:flex;gap:3px;height:18px;align-items:flex-end;margin:8px 0}
+.pop .eq i{width:4px;background:var(--rose);border-radius:2px;animation:eq 1s ease-in-out infinite;animation-delay:calc(var(--k)*-.2s)}
+@keyframes eq{0%,100%{height:20%}50%{height:100%}}
+
+/* bottle */
+.bottle{position:fixed;z-index:40;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(env(safe-area-inset-bottom,0px) + 90px);width:54px;height:54px;border-radius:50%;border:1px solid var(--line);background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:1.6rem;animation:float 4s ease-in-out infinite}
+
+.petal{position:fixed;top:-40px;z-index:70;pointer-events:none;width:14px;height:18px;border-radius:14px 1px 14px 1px;background:linear-gradient(135deg,var(--rose),color-mix(in oklab,var(--rose) 50%,#fff));animation:fall linear forwards}
+@keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(var(--rot))}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}

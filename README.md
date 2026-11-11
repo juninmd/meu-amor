@@ -1,18 +1,31 @@
-```markdown
-# Meu Amor – Standard Software Project
+# Meu Amor · Céu de Nós Dois
 
-**Description:** A standard software project.
+Site estático para Antonio & Daniela: um céu noturno vivo (canvas) com contadores, fotos, linha do tempo, playground de jogos, lista de sonhos e carta. Publicado no GitHub Pages direto da raiz, sem build.
 
-**Installation:**
+## Estrutura
 
-1.  Clone the repository: `git clone https://github.com/juninmd/meu-amor.git`
-2.  Navigate to the project directory: `cd meu-amor`
-3.  No dependencies to install (static site: HTML, CSS and JS).
+| Caminho | Papel |
+| --- | --- |
+| `index.html` | Marcação de todas as seções e sheets |
+| `css/base.css` | Tokens (tema noite/amanhecer), dock, música, atmosfera |
+| `css/sections.css` | Hero, momentos, jornada, sonhos, carta |
+| `css/playground.css` | Bento grid e jogos |
+| `js/config.js` | Datas, textos, fotos, perguntas: edite aqui o conteúdo |
+| `js/main.js` | Inicializa cada módulo de forma isolada |
+| `js/sky.js`, `timers.js`, `gallery.js`, `hero.js`, `dreams.js`, `letter.js`, `nav.js`, `dialogs.js` | Uma responsabilidade por arquivo |
+| `js/games/*.js` | Memória, raspadinha, quiz, calculadora, motivos/cápsula/garrafa/surpresa |
 
-**Usage:**
+## Rodar localmente
 
-*   **View Images:**  Open `index.html` and view the images.
-*   **Script Execution:**  Run `script.js` to execute your code.
-*   **Style & Configuration:**  Modify `style.css` and potentially the `verify_reasons.py` file for customization.
-*   **Testing:**  (If applicable)  Run the tests defined in `verify_reasons.py`.
+Os scripts são ES modules, então use um servidor (não `file://`):
+
+```bash
+python3 -m http.server 8000
+```
+
+## Testes
+
+```bash
+npm install
+npm test   # Vitest + jsdom, cobertura mínima de 80%
 ```
