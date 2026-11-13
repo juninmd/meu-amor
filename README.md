@@ -1,5 +1,9 @@
 # Meu Amor · Céu de Nós Dois
 
+<p align="center">
+  <img src="docs/readme/hero.png" alt="Banner ilustrativo do Meu Amor · Céu de Nós Dois (mockup com dados fictícios)" width="100%">
+</p>
+
 **Um site estático e pessoal para Antonio & Daniela: céu noturno em canvas, contadores do relacionamento, pilha de fotos, linha do tempo, mini-jogos, lista de sonhos e uma carta.**
 
 Não há framework, bundler nem banco de dados. É HTML, CSS e JavaScript ES modules servidos como estão; o conteúdo inteiro (datas, textos, fotos, perguntas) vive em `js/config.js`. O deploy é feito pelo GitHub Pages a cada push na `master`.
@@ -127,6 +131,18 @@ A configuração em `vitest.config.js` usa `jsdom`, carrega `tests/setup.js` e e
 - `tests/setup.js` substitui canvas, `matchMedia`, `IntersectionObserver` e `requestAnimationFrame`, que o jsdom não implementa.
 
 O workflow de Pages roda esses testes antes de publicar. Os workflows `Validate`, `SAST`, `Security Scan` e `Release Drafter` também existem no repositório.
+
+## Imagens
+
+> [!NOTE]
+> **Mockups ilustrativos.** As telas abaixo foram geradas em HTML com dados fictícios (Playwright) e não são capturas de uma instalação real.
+
+<p align="center">
+  <img src="docs/readme/home.png" alt="Céu de Nós Dois — mockup ilustrativo com dados fictícios" width="100%">
+  <br>
+  <sub>Céu de Nós Dois — dados fictícios.</sub>
+</p>
+
 
 ## Limitações
 
