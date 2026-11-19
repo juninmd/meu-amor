@@ -66,6 +66,13 @@ describe('site', () => {
     expect($('#phCount').textContent).toBe('6 / 9');
   });
 
+  it('ignores a second swipe while the first card is still flying away', () => {
+    click('#nextPh'); click('#nextPh'); vi.advanceTimersByTime(300);
+    expect($('#phCount').textContent).toBe('7 / 9');
+    click('#prevPh');
+    expect($('#phCount').textContent).toBe('6 / 9');
+  });
+
   it('opens a photo full screen', () => {
     const top = $('.photo.top');
     ptr(top, 'pointerdown', 10); ptr(top, 'pointerup');
