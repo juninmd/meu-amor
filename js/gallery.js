@@ -12,7 +12,7 @@ export function rotateTo(order, i) {
 
 export function initGallery() {
   const stack = $('#stack'), film = $('#film');
-  let order = PHOTOS.map((_, i) => i), drag = null, lbIndex = 0;
+  let order = PHOTOS.map((_, i) => i), drag = null, lbIndex = 0, flying = false;
 
   const cards = PHOTOS.map((p, i) => {
     const f = document.createElement('figure');
@@ -38,6 +38,9 @@ export function initGallery() {
   };
 
   const fly = dir => {
+    // A second swipe during the exit animation would rotate twice and skip a photo nobody saw.
+    if (flying) return;
+    flying = true;
     const f = cards[order[0]];
     f.style.transform = `translateX(${dir * 130}%) rotate(${dir * 24}deg)`;
     f.style.opacity = '0';
@@ -45,10 +48,15 @@ export function initGallery() {
       order = rotateTo(order, order[1]);
       f.style.transform = '';
       f.style.opacity = '';
+      flying = false;
       layout();
     }, 260);
   };
-  const prev = () => { order = rotateTo(order, order[order.length - 1]); layout(); };
+  const prev = () => {
+    if (flying) return;
+    order = rotateTo(order, order[order.length - 1]);
+    layout();
+  };
 
   const showLb = () => {
     const p = PHOTOS[lbIndex];
