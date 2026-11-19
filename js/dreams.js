@@ -34,6 +34,8 @@ export function initDreams() {
       boom({ particleCount: 30, spread: 45, origin: { x: (r.left + 30) / innerWidth, y: (r.top + r.height / 2) / innerHeight } });
     }
     render();
+    // render() replaces the whole list; without this a keyboard user loses focus after every toggle.
+    $(`#dream${box.dataset.i}`)?.focus();
     if (progress(dreams) === 100) boom({ particleCount: 200, spread: 120 });
   });
 

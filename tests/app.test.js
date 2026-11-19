@@ -183,6 +183,15 @@ describe('site', () => {
     expect(JSON.parse(localStorage.getItem('dreams'))).toHaveLength(6);
   });
 
+  it('keeps keyboard focus on the dream checkbox after toggling it', () => {
+    const box = $('#dream2');
+    box.focus();
+    box.checked = true;
+    box.dispatchEvent(new Event('change', { bubbles: true }));
+    expect(document.activeElement).toBe($('#dream2'));
+    expect(document.activeElement.checked).toBe(true);
+  });
+
   it('opens the letter and the secrets', () => {
     click('#env');
     expect($('#env').classList.contains('open')).toBe(true);
