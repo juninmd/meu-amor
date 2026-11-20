@@ -164,6 +164,18 @@ describe('site', () => {
     expect($('#calcOut').textContent).toContain('∞%');
   });
 
+  it('does not let the previous "∞%" reveal interrupt a new calculation', () => {
+    const submit = () => $('#calcForm').dispatchEvent(new Event('submit', { cancelable: true }));
+    submit();
+    // Run until the count reaches 100%: the "∞%" reveal is now pending (400 ms).
+    for (let i = 0; i < 100 && !$('#calcOut').textContent.includes('100%'); i++) vi.advanceTimersByTime(40);
+    vi.advanceTimersByTime(20);
+    submit();
+    vi.advanceTimersByTime(380);
+    expect($('#calcOut').textContent).not.toContain('∞%');
+    expect($('#calcOut').textContent).toMatch(/^\d+%$/);
+  });
+
   it('deals reasons, opens the capsule and the bottle', () => {
     click('[data-open="dlg-why"]'); vi.advanceTimersByTime(400);
     expect($('#whyN').textContent).toBe('Motivo 1 de 20');
