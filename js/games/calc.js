@@ -6,7 +6,7 @@ export const nextPercent = (p, rnd = Math.random) => Math.min(100, p + 3 + Math.
 
 export function initCalc() {
   const out = $('#calcOut'), err = $('#calcErr');
-  let timer = null;
+  let timer = null, finalTimer = null;
 
   $('#calcForm').addEventListener('submit', e => {
     e.preventDefault();
@@ -16,13 +16,14 @@ export function initCalc() {
     }
     err.textContent = '';
     clearInterval(timer);
+    clearTimeout(finalTimer);
     let p = 0;
     timer = setInterval(() => {
       p = nextPercent(p);
       out.innerHTML = `<b>${p}%</b>`;
       if (p < 100) return;
       clearInterval(timer);
-      setTimeout(() => {
+      finalTimer = setTimeout(() => {
         out.innerHTML = '<b>∞%</b><span>Almas gêmeas!</span>';
         boom({ particleCount: 120 });
       }, FINAL_MS);
