@@ -238,6 +238,16 @@ describe('site', () => {
     click('#inf'); vi.advanceTimersByTime(1600);
   });
 
+  it('does not throw confetti over a letter closed before the burst', () => {
+    window.confetti.mockClear();
+    click('#env');
+    vi.advanceTimersByTime(300);
+    click('#env');
+    vi.advanceTimersByTime(800);
+    expect($('#env').classList.contains('open')).toBe(false);
+    expect(window.confetti).not.toHaveBeenCalled();
+  });
+
   it('switches theme, follows the dock and tilts tiles', () => {
     click('#themeBtn');
     expect(document.documentElement.dataset.theme).toBe('dark');

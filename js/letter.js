@@ -20,6 +20,7 @@ const reveal = () => { openDialog('dlg-konami'); boom({ particleCount: 150 }); }
 
 export function initLetter() {
   const env = $('#env'), hint = $('#envHint');
+  let burst;
   env.addEventListener('click', () => {
     const open = env.classList.toggle('open');
     env.setAttribute('aria-expanded', String(open));
@@ -29,7 +30,8 @@ export function initLetter() {
       const paper = env.querySelector('.paper');
       env.style.marginTop = open ? `${Math.max(40, paper.offsetHeight - env.offsetHeight * 0.58 + 24)}px` : '';
     });
-    if (open) setTimeout(() => boom({ particleCount: 50, origin: { y: 0.5 } }), 700);
+    clearTimeout(burst);
+    if (open) burst = setTimeout(() => boom({ particleCount: 50, origin: { y: 0.5 } }), 700);
   });
 }
 
