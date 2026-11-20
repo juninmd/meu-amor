@@ -66,6 +66,22 @@ describe('sky', () => {
     sky.recolor();
   });
 
+  it('keeps the same stars when only the mobile URL bar changes the height', () => {
+    const ctx = fakeCtx();
+    const listeners = {};
+    const win = { innerWidth: 390, innerHeight: 700, devicePixelRatio: 1, addEventListener: (n, fn) => { listeners[n] = fn; },
+      requestAnimationFrame: vi.fn(), performance: { now: () => 0 } };
+    const sky = createSky({ getContext: () => ctx }, win);
+    const positions = () => { ctx.arc.mockClear(); sky.frame(0); return ctx.arc.mock.calls.map(c => `${c[0]},${c[1]}`).join(';'); };
+    const before = positions();
+    win.innerHeight = 756;
+    listeners.resize();
+    expect(positions()).toBe(before);
+    win.innerWidth = 844; win.innerHeight = 390;
+    listeners.resize();
+    expect(positions()).not.toBe(before);
+  });
+
   it('degrades without canvas support', () => {
     const sky = createSky(null);
     expect(sky.active()).toBe(false);
