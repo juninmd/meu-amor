@@ -88,6 +88,19 @@ describe('small helpers', () => {
     expect(konamiStep(3, 'ArrowUp')).toBe(1);
   });
 
+  it('keeps the overlap when an extra key repeats the start of the code', () => {
+    // A third ArrowUp still leaves the last two as a valid start: ↑↑↑↓↓←→←→BA must unlock.
+    let k = 0;
+    ['ArrowUp', ...KONAMI].forEach(key => { k = konamiStep(k, key); });
+    expect(k).toBe(KONAMI.length);
+  });
+
+  it('accepts B and A with Caps Lock or Shift', () => {
+    let k = 0;
+    KONAMI.map(key => (key.length === 1 ? key.toUpperCase() : key)).forEach(key => { k = konamiStep(k, key); });
+    expect(k).toBe(KONAMI.length);
+  });
+
   it('tracks dream progress and old saved checkmarks', () => {
     expect(progress([])).toBe(0);
     expect(progress([{ ok: true }, { ok: false }])).toBe(50);

@@ -4,10 +4,16 @@ import { openDialog } from './dialogs.js';
 
 const TAP_WINDOW = 1500;
 
-// Returns the next position in the secret sequence (restarting on a wrong key).
+// Returns the next position in the secret sequence. On a wrong key it falls back to the longest
+// typed suffix that still starts the code, so ↑↑↑↓↓… keeps going; letters ignore Caps Lock/Shift.
 export function konamiStep(index, key, seq = KONAMI) {
-  if (key === seq[index]) return index + 1;
-  return key === seq[0] ? 1 : 0;
+  const k = key.length === 1 ? key.toLowerCase() : key;
+  if (k === seq[index]) return index + 1;
+  const typed = [...seq.slice(0, index), k];
+  for (let len = Math.min(index, seq.length - 1); len > 0; len--) {
+    if (typed.slice(-len).every((x, i) => x === seq[i])) return len;
+  }
+  return 0;
 }
 
 const reveal = () => { openDialog('dlg-konami'); boom({ particleCount: 150 }); };
