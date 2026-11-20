@@ -32,9 +32,12 @@ export function createSky(canvas, win = window) {
 
   const resize = () => {
     const dpr = Math.min(win.devicePixelRatio || 1, 2);
+    const prevW = W, prevH = H;
     W = win.innerWidth; H = win.innerHeight;
     canvas.width = W * dpr; canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Mobile browsers resize the height while scrolling (URL bar, keyboard); reshuffling then makes every star jump.
+    if (stars.length && W === prevW && Math.abs(H - prevH) < prevH * 0.25) return;
     stars = Array.from({ length: Math.min(320, Math.round((W * H) / 5000)) }, () => ({
       hx: Math.random() * W, hy: Math.random() * H, r: Math.random() * 1.3 + 0.3,
       p: Math.random() * 6.3, s: 0.4 + Math.random() * 1.4
