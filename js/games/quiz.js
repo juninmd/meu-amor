@@ -8,7 +8,7 @@ export const quizMessage = (score, total) => (score === total ? 'Você me conhec
 
 export function initQuiz() {
   const box = $('#quiz');
-  let index = 0, score = 0;
+  let index = 0, score = 0, nextTimer;
 
   const dots = () => `<div class="q-dots">${QUIZ.map((_, i) => `<i class="${i <= index ? 'on' : ''}"></i>`).join('')}</div>`;
 
@@ -28,6 +28,8 @@ export function initQuiz() {
   };
 
   function start() {
+    // A pending "next question" from the previous round would skip question 1.
+    clearTimeout(nextTimer);
     index = 0;
     score = 0;
     show();
@@ -41,7 +43,7 @@ export function initQuiz() {
     buttons[q.c].classList.add('ok');
     if (Number(b.dataset.i) === q.c) score++;
     else b.classList.add('no');
-    setTimeout(() => { index++; show(); }, NEXT_MS);
+    nextTimer = setTimeout(() => { index++; show(); }, NEXT_MS);
   });
 
   onOpen('dlg-quiz', start);

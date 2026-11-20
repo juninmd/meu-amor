@@ -141,6 +141,19 @@ describe('site', () => {
     document.querySelectorAll('.q-opts button')[1].click();
   });
 
+  it('restarts the quiz cleanly when reopened right after an answer', () => {
+    vi.advanceTimersByTime(2000);
+    $('#dlg-quiz').close?.();
+    click('[data-open="dlg-quiz"]');
+    document.querySelectorAll('.q-opts button')[2].click();
+    // Closing and reopening before the 1 s "next question" delay must not skip question 1.
+    $('#dlg-quiz').close?.();
+    click('[data-open="dlg-quiz"]');
+    vi.advanceTimersByTime(1000);
+    expect(document.querySelectorAll('.q-dots .on')).toHaveLength(1);
+    expect(document.querySelectorAll('.q-opts button:disabled')).toHaveLength(0);
+  });
+
   it('calculates love', () => {
     $('#n1').value = ' ';
     $('#calcForm').dispatchEvent(new Event('submit', { cancelable: true }));
