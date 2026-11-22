@@ -1,65 +1,40 @@
-```markdown
-# AGENTS.md - Guidelines for AI Coding Agents
+# AGENTS.md
 
-These guidelines are designed to ensure the creation of high-quality, maintainable, and reliable AI coding agents. Adherence to these principles is crucial for maximizing productivity and minimizing potential issues.
+Meu Amor: a personal, static birthday-style web page in vanilla JS (hero, letter, gallery, dreams, mini-games). No backend.
 
-## 1. DRY (Don't Repeat Yourself)
+## Stack
 
-*   **Single Responsibility Principle:** Each agent should have a clearly defined and focused responsibility. Avoid creating agents with duplicated logic or functionality.
-*   **Abstraction:** Implement abstractions where appropriate to represent common patterns and reduce code repetition.
-*   **Component-Based Design:** Use components to encapsulate reusable logic and promote modularity.
+- Vanilla JS ES modules (`js/`), CSS (`css/`), static `index.html`.
+- Tests: Vitest with jsdom and v8 coverage (`vitest.config.js`).
+- Node 22 in CI (`pages.yml`). Dependencies are pinned in `package-lock.json`.
 
-## 2. KISS (Keep It Simple, Stupid)
+## Commands
 
-*   **Minimal Code:** Strive for the shortest possible solution that achieves the required functionality.
-*   **Readability:** Code should be easy to understand and follow, using meaningful variable and function names.
-*   **Avoid Complexity:** Resist over-engineering solutions; prioritize clarity over potential optimization.
-
-## 3. SOLID Principles
-
-*   **Single Responsibility:**  Each class/component/agent should have one primary responsibility.
-*   **Open/Closed Principle:**  The agent’s design should allow for extension without modifying the core logic. (Consider external configuration files or modules for future extensions).
-*   **Liskov Substitution Principle:**  Subclasses should be substitutable for their base classes without altering the correctness of the program.
-*   **Interface Segregation Principle:**  Clients should not be forced to depend on methods they do not use.
-*   **Dependency Inversion Principle:** Client code should not depend on implementation details; they should depend on abstractions.
-
-## 4. YAGNI (You Aren’t Gonna Need It)
-
-*   **Defer Unnecessary Code:**  Do not write code that isn't currently required.  Avoid adding features or functionalities that are likely not needed in the future.
-*   **Focus on the Core Task:**  Prioritize implementing the essential requirements for the agent to achieve its intended purpose.
-
-## 5. Code Quality & Structure
-
-*   **Comments:**  Provide concise and informative comments explaining *why* the code is doing something, not *what* it's doing.
-*   **Naming Conventions:**  Follow consistent naming conventions (e.g., camelCase for variables and functions, PascalCase for classes).
-*   **Code Formatting:** Use a code formatter (e.g., Black) to ensure consistent code style.
-*   **Error Handling:** Implement basic error handling and logging to identify potential issues.
-*   **Testing:**  All code must be thoroughly tested.  A minimum of 80% test coverage is required.
-
-## 6.  Specific Guidelines & Constraints
-
-*   **Maximum Code Length:** 180 lines of code.
-*   **Test Coverage:** 80% minimum.  Coverage will be automatically assessed using a dedicated testing framework.
-*   **File Structure:** Each file should have a distinct purpose and be logically organized.  Follow a consistent directory structure (e.g., "agents/agent_x/").
-*   **Modularization:**  Each agent should ideally be modular, allowing for easy reuse of components.
-*   **Configuration:** Utilize configuration files for input parameters and settings, avoiding hardcoded values.
-*   **Data Handling:** Data must be handled in a consistent and well-documented manner.
-
-## 7.  Development Practices
-
-*   **Iterative Development:** Break down the project into smaller, manageable iterations.
-*   **Version Control:** Use Git for version control and collaborative development.
-*   **Code Reviews:** Conduct regular code reviews to identify potential issues and ensure code quality.
-
-## 8.  Future Considerations (To be addressed in future iterations - not required initially)
-
-*   **Logging:** Implement structured logging for debugging and monitoring.
-*   **Configuration Management:** Introduce a robust configuration management system.
-*   **API Design:** Consider designing clear and documented APIs for future agent extensions.
-
-
-These guidelines are intended to provide a framework for the development of AGENTS.md.  Their implementation should be prioritized based on the specific requirements of each agent.  Any code written must adhere to these principles.
+```bash
+npm ci               # setup (CI uses npm, not pnpm)
+npm test             # vitest run --coverage (80% thresholds on js/**/*.js)
+./.github/scripts/build-site.sh _site   # copy the publishable files to _site/ (what Pages deploys)
 ```
+
+CI: `validate.yml` runs `npm ci && npm test` when `package-lock.json` exists. `pages.yml` builds and deploys `_site/`.
+
+## Structure
+
+- `index.html`: single page. `css/`: `base.css`, `sections.css`, `playground.css`.
+- `js/`: `main.js` (entry), `config.js` (texts and settings), `hero.js`, `letter.js`, `gallery.js`, `dreams.js`, `sky.js`, `timers.js`, `nav.js`, `dialogs.js`, `utils.js`.
+- `js/games/`: mini-games (`calc`, `extras`, `memory`, `quiz`, `scratch`).
+- `photo_*.jpg` (root): gallery photos referenced by `js/config.js`, `index.html` and `README.md`. Personal content, do not rename or remove.
+- `docs/readme/`: README screenshots.
+- `tests/`: `app.test.js`, `logic.test.js`, `setup.js`.
+
+## Conventions
+
+- Code principles: DRY, KISS, single responsibility per module, and no speculative features (YAGNI).
+- Max 180 lines per code file. Split the file when it grows.
+- Naming: camelCase for variables and functions, PascalCase for classes.
+- Comments explain why the code does something, not what it does. Keep them short.
+- Use configuration files for inputs and settings (`js/config.js`), not hardcoded values.
+- All code must be tested. Coverage thresholds (80% lines, functions, branches, statements) are enforced by `vitest.config.js`; do not lower them.
 
 <!-- base-actions-main-policy -->
 ## GitHub Actions — padrão obrigatório (@main)
@@ -72,3 +47,9 @@ These guidelines are intended to provide a framework for the development of AGEN
 - PRs cujos checks não iniciam por billing/spending limit são mesclados pelo bot central
   `juninmd/base-actions/.github/workflows/auto-merge-billing-blocked.yml`.
   Para impedir o merge automático de um PR, aplique a label `do-not-merge`.
+
+## Gotchas
+
+- `build-site.sh` publishes only top-level `*.html|css|js|jpg|png|svg|webp|ico` plus `css/` and `js/`. Add a new top-level asset type there, or Pages will skip it.
+- The `photo_*.jpg` files at the root are personal photos. Changing them changes the published page.
+- No secrets are used. Keep personal data out of new files beyond the content the page already shows.
