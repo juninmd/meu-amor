@@ -117,6 +117,24 @@ describe('site', () => {
     expect($('#dlg-mem').open).toBe(false);
   });
 
+  it('announces memory card state and score to screen readers', () => {
+    click('[data-open="dlg-mem"]');
+    const cards = [...document.querySelectorAll('.mcard')];
+    expect(cards[0].getAttribute('aria-label')).toBe('Carta 1, virada para baixo');
+    const twin = cards.find((c, i) => i > 0 && c.dataset.s === cards[0].dataset.s);
+    const other = cards.find(c => c.dataset.s !== cards[0].dataset.s);
+    cards[0].click();
+    expect(cards[0].getAttribute('aria-label')).toMatch(/^Carta 1, foto [1-6]$/);
+    other.click();
+    vi.advanceTimersByTime(1000);
+    expect(cards[0].getAttribute('aria-label')).toBe('Carta 1, virada para baixo');
+    cards[0].click(); twin.click();
+    expect(twin.getAttribute('aria-label')).toMatch(/, par encontrado$/);
+    expect(twin.getAttribute('aria-disabled')).toBe('true');
+    expect($('#memPairs').getAttribute('aria-live')).toBe('polite');
+    click('#dlg-mem [data-close]'); vi.advanceTimersByTime(250);
+  });
+
   it('reveals the scratch card', () => {
     click('[data-open="dlg-scr"]');
     expect(PRIZES).toContain($('#prize').textContent);
